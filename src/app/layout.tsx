@@ -1,12 +1,14 @@
-"use client";
-
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import "../../tailwind.config";
+// import { Metadata } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
-
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+});
+//
 // export const metadata: Metadata = {
 //   title: "Document Management",
 //   description: "Document management next app",
@@ -19,17 +21,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {/* <Header /> */}
-        <div className="min-h-full">
-          <Header />
-
-          <main>
-            <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-              {children}
-            </div>
-          </main>
-        </div>
+      <body
+        className={
+          roboto.className +
+          " " +
+          "xl:flex bg-gray-100 xl:items-stretch min-h-screen"
+        }
+      >
+        <Header />
+        <main className="bg-gray-100 w-full">{children}</main>
       </body>
     </html>
   );
