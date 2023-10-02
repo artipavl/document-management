@@ -7,7 +7,7 @@ type MobileHeaderProps = {};
 
 const MobileHeader: FC<MobileHeaderProps> = (props) => {
   return (
-    <ul className="px-4 py-2 bg-white flex justify-between fixed bottom-0 left-0 w-full xl:hidden">
+    <ul className="px-4 py-2 bg-white flex flex-wrap justify-between fixed bottom-0 left-0 w-full xl:hidden">
       <li>
         <Link
           href="/"
