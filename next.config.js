@@ -15,6 +15,21 @@ const nextConfig = {
       sassOptions: {
         includePaths: [path.join(__dirname, 'styles')],
       },
+      // experimental: {
+      //   esmExternals: "loose", // <-- add this
+      //   serverComponentsExternalPackages: ["mongoose"] // <-- and this
+      // },
+      experimental: {
+        serverActions: true,
+        serverComponentsExternalPackages:['mongoose','@typegoose/typegoose']
+    }, 
+      // and the following to enable top-level await support for Webpack
+      // webpack: (config) => {
+      //   config.experiments = {
+      //     topLevelAwait: true
+      //   };
+      //   return config;
+      // },
 }
 
 module.exports = nextConfig
