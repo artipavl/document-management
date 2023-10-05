@@ -1,8 +1,8 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header/header";
+// import Header from "@/components/header/header";
 import "../../tailwind.config";
-import MobileHeader from "@/components/mobileHeader/mobileHeader";
+// import MobileHeader from "@/components/mobileHeader/mobileHeader";
 // import { Metadata } from "next";
 
 const roboto = Roboto({
@@ -29,9 +29,7 @@ export default function RootLayout({
           "xl:flex bg-gray-100 xl:items-stretch min-h-screen"
         }
       >
-        <Header />
-        <main className="bg-gray-100 w-full p-6">{children}</main>
-        <MobileHeader />
+        {children}
       </body>
     </html>
   );
