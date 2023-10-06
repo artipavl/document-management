@@ -1,19 +1,20 @@
 import { getFolders } from "@/api/controllers/folder/getFolders";
-import { getUsers } from "@/api/controllers/user/getUsers";
 import FoldersNav from "@/components/foldersNav/foldersNav";
 import Title from "@/components/title/title";
 import React, { FC } from "react";
 
-type PageProps = {};
+type PageProps = {
+  params: { slug: string };
+};
 
-const Folders: FC<PageProps> = async (props) => {
+const Users: FC<PageProps> = async ({ params }) => {
   const folders = await getFolders();
   return (
     <div>
-      <FoldersNav folders={folders} />
-      <Title title={"УСІ"} />
+      <FoldersNav folders={folders} current={params.slug}/>
+      <Title title={"Папка #" + params.slug} />
     </div>
   );
 };
 
-export default Folders;
+export default Users;

@@ -22,7 +22,6 @@ type HeaderProps = {};
 
 const Header: FC<HeaderProps> = (props) => {
   const router = usePathname();
-  console.log(router);
   return (
     <header className={style.header}>
       <div className={style.headerContainer}>
