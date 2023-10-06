@@ -1,11 +1,10 @@
 import connectDB from "../../connect-db";
 import FolderModel from "@/api/models/folder";
 
-export const getFolders = async ()=> {
+export const getFolders = async (): Promise<IFolder[]> => {
   try {
     await connectDB();
     const Folders = await FolderModel.find({});
-    console.log(Folders);
     return Folders;
   } catch (error) {
     console.log(error);
