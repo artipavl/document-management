@@ -1,4 +1,3 @@
-import Title from "@/components/title/title";
 import React, { FC } from "react";
 
 type PageProps = {};
@@ -6,7 +5,8 @@ type PageProps = {};
 const Folders: FC<PageProps> = (props) => {
   return (
     <div>
-      <Title title="Папки" />
+      пуста
+      
     </div>
   );
 };
