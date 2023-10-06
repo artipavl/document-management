@@ -5,7 +5,7 @@ export const getFolders = async (): Promise<IFolder[]> => {
   try {
     await connectDB();
     const Folders = await FolderModel.find({});
-    return Folders;
+    return Folders as IFolder[];
   } catch (error) {
     console.log(error);
     return [];

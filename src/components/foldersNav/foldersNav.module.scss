@@ -3,5 +3,9 @@
 }
 
 .item {
-  @apply block py-4 text-gray-900 font-medium text-base;
+  @apply block py-4 text-gray-900 font-medium text-base last:ml-auto;
+}
+
+.itemActive {
+  @apply text-red-700;
 }

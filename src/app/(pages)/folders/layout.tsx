@@ -1,3 +1,5 @@
+import React from "react";
+
 import { addFolders } from "@/api/controllers/folder/addFolder";
 import { getFolders } from "@/api/controllers/folder/getFolders";
 import { getUsers } from "@/api/controllers/user/getUsers";
@@ -9,11 +11,12 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const folders = await getFolders();
+  // const folders = await getFolders();
+  // console.log(folders);
   return (
     <>
       <Title title="Папки" />
-      <FoldersNav folders={folders} />
+      
       {children}
     </>
   );
