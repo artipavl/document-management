@@ -1,7 +1,7 @@
-.list{
-    @apply flex min-w-full gap-6
+.list {
+  @apply flex min-w-full gap-6;
 }
 
-.item{
-    @apply py-4 text-gray-900 font-medium text-base
+.item {
+  @apply block py-4 text-gray-900 font-medium text-base;
 }
