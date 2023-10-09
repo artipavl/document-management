@@ -1,5 +1,5 @@
 .header {
-  @apply p-4 flex xl:py-6 xl:w-64 bg-white max-xl:border-b xl:border-r border-gray-200;
+  @apply p-4 flex xl:py-6 xl:w-64 bg-white max-xl:border-b xl:border-r border-gray-200 z-10;
 }
 
 .headerContainer {
@@ -32,6 +32,10 @@
 
 .headerNav {
   @apply max-xl:hidden;
+}
+
+.headerNavOpen {
+  @apply max-xl:block max-xl:absolute max-xl:top-0 max-xl:left-0 max-xl:w-full max-xl:h-[calc(100%-80px)] max-xl:bg-white max-xl:mt-20;
 }
 
 .headerNavLink {

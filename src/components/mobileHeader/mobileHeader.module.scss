@@ -1,9 +1,9 @@
 .navList {
-  @apply px-4 py-2 bg-white flex flex-wrap justify-between fixed bottom-0 left-0 w-full xl:hidden;
+  @apply px-4 py-2 bg-white flex flex-wrap justify-between fixed bottom-0 left-0 w-full xl:hidden z-10;
 }
 
 .navLink {
-  @apply flex items-center flex-col gap-2 py-2 px-1 hover:text-red-500 focus:text-red-500 text-gray-900 text-lg	;
+  @apply flex items-center flex-col gap-2 py-2 px-1 hover:text-red-500 focus:text-red-500 text-gray-900 text-lg;
 }
 
 .navIcon {

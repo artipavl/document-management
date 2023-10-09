@@ -1,5 +1,5 @@
 "use client";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import Logo from "../logo/logo";
 import Link from "next/link";
@@ -17,11 +17,26 @@ import {
 import style from "./header.module.scss";
 
 import { useRouter, usePathname } from "next/navigation";
+import MobileHeader from "../mobileHeader/mobileHeader";
 
 type HeaderProps = {};
 
 const Header: FC<HeaderProps> = (props) => {
   const router = usePathname();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  function openMenu() {
+    "use client";
+    setIsOpen((isOpen) => !isOpen);
+  }
+
+  function closeMenu() {
+    "use client";
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  }
+
   return (
     <header className={style.header}>
       <div className={style.headerContainer}>
@@ -38,8 +53,14 @@ const Header: FC<HeaderProps> = (props) => {
             <AiOutlineUser className={style.headerIcon} />
           </Link>
         </div>
-        <nav className={style.headerNav}>
-          <ul>
+        <nav className={isOpen ? style.headerNavOpen : style.headerNav}>
+          <ul
+            onClick={(e) => {
+              if (e.target as HTMLLinkElement) {
+                closeMenu();
+              }
+            }}
+          >
             <li>
               <Link
                 href="/home"
@@ -108,6 +129,7 @@ const Header: FC<HeaderProps> = (props) => {
           </ul>
         </nav>
       </div>
+      <MobileHeader openFunction={openMenu} />
     </header>
   );
 };
