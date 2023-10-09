@@ -3,42 +3,31 @@ import React, { FC } from "react";
 
 import style from "./mobileHeader.module.scss";
 
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineMenu } from "react-icons/ai";
 
-type MobileHeaderProps = {};
+type MobileHeaderProps = {
+  openFunction: () => void;
+};
 
-const MobileHeader: FC<MobileHeaderProps> = (props) => {
+const MobileHeader: FC<MobileHeaderProps> = ({ openFunction }) => {
   return (
     <ul className={style.navList}>
       <li>
-        <Link href="/" className={style.navLink}>
+        <Link href="/home" className={style.navLink}>
           <AiOutlineHome className={style.navIcon} />
           <span>Головна</span>
         </Link>
       </li>
+
       <li>
-        <Link href="/" className={style.navLink}>
-          <AiOutlineHome className={style.navIcon} />
-          <span>Головна</span>
-        </Link>
-      </li>
-      <li>
-        <Link href="/" className={style.navLink}>
-          <AiOutlineHome className={style.navIcon} />
-          <span>Головна</span>
-        </Link>
-      </li>
-      <li>
-        <Link href="/" className={style.navLink}>
-          <AiOutlineHome className={style.navIcon} />
-          <span>Головна</span>
-        </Link>
-      </li>
-      <li>
-        <Link href="/" className={style.navLink}>
-          <AiOutlineHome className={style.navIcon} />
-          <span>Головна</span>
-        </Link>
+        <button
+          type="button"
+          className={style.navLink}
+          onClick={() => openFunction()}
+        >
+          <AiOutlineMenu className={style.navIcon} />
+          <span>Меню</span>
+        </button>
       </li>
     </ul>
   );
