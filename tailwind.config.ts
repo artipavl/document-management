@@ -35,15 +35,33 @@ const config: Config = {
 				x10: '80px',
 				x12: '96px',
 			},
+			fontSize: {
+				'heading-1': ['54px', { lineHeight: '110%', letterSpacing: '0', fontWeight: '700' }],
+				'heading-2': ['42px', { lineHeight: '110%', letterSpacing: '0', fontWeight: '700' }],
+				'heading-3': ['32px', { lineHeight: '110%', letterSpacing: '0', fontWeight: '700' }],
+				'heading-4': ['24px', { lineHeight: '110%', letterSpacing: '0', fontWeight: '700' }],
+				'heading-5': ['20px', { lineHeight: '110%', letterSpacing: '0', fontWeight: '700' }],
+				'heading-6': ['18px', { lineHeight: '110%', letterSpacing: '0', fontWeight: '700' }],
+
+				'subtitle-M': ['16px', { lineHeight: '110%', letterSpacing: '0', fontWeight: '500' }],
+        'subtitle-S': ['14px', { lineHeight: '110%', letterSpacing: '0', fontWeight: '500' }],
+        
+				'body-L': ['18px', { lineHeight: '140%', letterSpacing: '0', fontWeight: '400' }],
+				'body-M': ['16px', { lineHeight: '140%', letterSpacing: '0', fontWeight: '400' }],
+				'body-S': ['14px', { lineHeight: '140%', letterSpacing: '0', fontWeight: '400' }],
+				'body-XS': ['12px', { lineHeight: '140%', letterSpacing: '0', fontWeight: '400' }],
+				'body-XXS': ['10px', { lineHeight: '140%', letterSpacing: '0', fontWeight: '400' }],
+				
+        'caption': ['20px', { lineHeight: '100%', letterSpacing: '1px', fontWeight: '700' }],
+
+        'button-L': ['20px', { lineHeight: '100%', letterSpacing: '0.5px', fontWeight: '500' }],
+        'button-M': ['16px', { lineHeight: '100%', letterSpacing: '0.5px', fontWeight: '500' }],
+        'button-S': ['14px', { lineHeight: '100%', letterSpacing: '0.5px', fontWeight: '500' }],
+        
+        'menu&tabs': ['16px', { lineHeight: '100%', letterSpacing: '0', fontWeight: '500' }],
+			},
 		},
-		plugins: [
-			// plugin(function ({addComponents}) {
-			//   addComponents({
-			//     '.heading1': {
-			//     }
-			//   })
-			// })
-		],
+		plugins: [],
 	},
 };
 
