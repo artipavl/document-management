@@ -25,6 +25,16 @@ const config: Config = {
 				coolGray90: '#21272a',
 				coolGray100: '#121619',
 			},
+			spacing: {
+				'1': '8px',
+				'2': '16px',
+				'3': '24px',
+				'4': '32px',
+				'6': '48px',
+				'8': '64px',
+				'10': '80px',
+				'12': '96px',
+			},
 		},
 		plugins: [
 			// plugin(function ({addComponents}) {
