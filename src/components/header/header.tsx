@@ -12,6 +12,7 @@ import {
   AiOutlineApartment,
   AiOutlineTeam,
   AiOutlineBook,
+  AiOutlineContainer,
 } from "react-icons/ai";
 
 import style from "./header.module.scss";
@@ -124,6 +125,19 @@ const Header: FC<HeaderProps> = (props) => {
               >
                 <AiOutlineApartment className={style.headerNavIcon} />
                 <span>Структура</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/addressee"
+                className={
+                  router.includes("/addressee")
+                    ? style.headerNavLink + " " + style.active
+                    : style.headerNavLink
+                }
+              >
+                <AiOutlineContainer className={style.headerNavIcon} />
+                <span>Адресати</span>
               </Link>
             </li>
           </ul>
