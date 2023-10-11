@@ -28,3 +28,5 @@ interface IAddAddressee {
   phone?: string;
   underAddressee: IUnderAddressee[];
 }
+
+type T = any;
