@@ -1,0 +1,47 @@
+.table {
+  @apply w-full bg-white border-solid border-gray-200 border;
+}
+
+.thead {
+  @apply bg-coolGray10;
+}
+
+.th {
+  @apply px-3 py-4 text-left last:w-10 last:p-0;
+}
+
+.tr {
+  @apply border-solid border-gray-200 border;
+}
+
+.td {
+  @apply px-3 py-4 last:w-10 last:p-0;
+}
+
+.button {
+  @apply w-10 h-10 flex justify-center items-center;
+}
+
+.pagination {
+  @apply flex mt-4 max-xl:mb-6 justify-center;
+}
+
+.paginationBtn {
+  @apply flex items-center justify-center  p-2 text-primary60 font-medium hover:bg-primary30 hover:text-primary90 focus:bg-primary30 focus:text-primary90;
+}
+
+.paginationBtnText {
+  @apply px-2;
+}
+
+.paginationBtnActive {
+  @apply bg-primary30 text-primary90;
+}
+
+.paginationBtnDisabled {
+  @apply text-coolGray60 hover:bg-inherit cursor-default hover:text-coolGray60 focus:bg-inherit cursor-default focus:text-coolGray60;
+}
+
+.paginationBtnIcon {
+  @apply w-6 h-6 text-current;
+}

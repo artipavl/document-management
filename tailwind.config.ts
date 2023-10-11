@@ -8,7 +8,7 @@ const config: Config = {
 			colors: {
 				primary90: '#003D87',
 				primary60: '#0F62FE',
-				promary30: '#A6C8FF',
+				primary30: '#A6C8FF',
 				white: '#ffffff',
 				error: '#DA1E28',
 				warning: '#DA1E28',
