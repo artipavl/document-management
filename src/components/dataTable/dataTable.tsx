@@ -29,7 +29,7 @@ const DataTable: FC<DataTableProps<T>> = ({
   pathname,
   search = "",
 }) => {
-  const [closestSmaller, closestLarger] = findClosestMultiplesOf6(page);
+  const [closestSmaller, closestLarger] = findClosestMultiples(page, 6);
   return (
     <>
       <table cellSpacing={0} className={styles.table}>
@@ -48,7 +48,7 @@ const DataTable: FC<DataTableProps<T>> = ({
             <tr key={index} className={styles.tr}>
               {keys.map((key) => (
                 <td key={String(key)} className={styles.td}>
-                  {item[key]}
+                  <p className={styles.tdText}> {item[key]}</p>
                 </td>
               ))}
               <td className={styles.td}>
@@ -60,6 +60,7 @@ const DataTable: FC<DataTableProps<T>> = ({
           ))}
         </tbody>
       </table>
+
       <ul className={styles.pagination}>
         <li>
           <Link
@@ -78,10 +79,21 @@ const DataTable: FC<DataTableProps<T>> = ({
             }}
           >
             <AiOutlineLeft className={styles.paginationBtnIcon} />
-            <span className={styles.paginationBtnText}>Попередня</span>
+            <span
+              className={
+                styles.paginationBtnText + " " + styles.paginationBtnHidden
+              }
+            >
+              Попередня
+            </span>
           </Link>
         </li>
 
+        <li className={styles.paginationInformation}>
+          <span className={styles.paginationBtnText}>
+            {page} / {Math.ceil(total / limit)}
+          </span>
+        </li>
         {Array.from({ length: Math.ceil(total / limit) }, (v, k) => {
           const p = k + 1;
 
@@ -91,8 +103,12 @@ const DataTable: FC<DataTableProps<T>> = ({
                 <Link
                   className={
                     page === p
-                      ? styles.paginationBtnActive + " " + styles.paginationBtn
-                      : styles.paginationBtn
+                      ? styles.paginationBtnActive +
+                        " " +
+                        styles.paginationBtn +
+                        " " +
+                        styles.paginationBtnHidden
+                      : styles.paginationBtn + " " + styles.paginationBtnHidden
                   }
                   href={{
                     pathname,
@@ -114,8 +130,12 @@ const DataTable: FC<DataTableProps<T>> = ({
                 <Link
                   className={
                     page === p
-                      ? styles.paginationBtnActive + " " + styles.paginationBtn
-                      : styles.paginationBtn
+                      ? styles.paginationBtnActive +
+                        " " +
+                        styles.paginationBtn +
+                        " " +
+                        styles.paginationBtnHidden
+                      : styles.paginationBtn + " " + styles.paginationBtnHidden
                   }
                   href={{
                     pathname,
@@ -139,8 +159,12 @@ const DataTable: FC<DataTableProps<T>> = ({
                 <Link
                   className={
                     page === p
-                      ? styles.paginationBtnActive + " " + styles.paginationBtn
-                      : styles.paginationBtn
+                      ? styles.paginationBtnActive +
+                        " " +
+                        styles.paginationBtn +
+                        " " +
+                        styles.paginationBtnHidden
+                      : styles.paginationBtn + " " + styles.paginationBtnHidden
                   }
                   href={{
                     pathname,
@@ -163,8 +187,12 @@ const DataTable: FC<DataTableProps<T>> = ({
                 <Link
                   className={
                     page === p
-                      ? styles.paginationBtnActive + " " + styles.paginationBtn
-                      : styles.paginationBtn
+                      ? styles.paginationBtnActive +
+                        " " +
+                        styles.paginationBtn +
+                        " " +
+                        styles.paginationBtnHidden
+                      : styles.paginationBtn + " " + styles.paginationBtnHidden
                   }
                   href={{
                     pathname,
@@ -187,8 +215,12 @@ const DataTable: FC<DataTableProps<T>> = ({
                 <Link
                   className={
                     page === p
-                      ? styles.paginationBtnActive + " " + styles.paginationBtn
-                      : styles.paginationBtn
+                      ? styles.paginationBtnActive +
+                        " " +
+                        styles.paginationBtn +
+                        " " +
+                        styles.paginationBtnHidden
+                      : styles.paginationBtn + " " + styles.paginationBtnHidden
                   }
                   href={{
                     pathname,
@@ -222,7 +254,13 @@ const DataTable: FC<DataTableProps<T>> = ({
               },
             }}
           >
-            <span className={styles.paginationBtnText}>Наступна </span>
+            <span
+              className={
+                styles.paginationBtnText + " " + styles.paginationBtnHidden
+              }
+            >
+              Наступна{" "}
+            </span>
             <AiOutlineRight className={styles.paginationBtnIcon} />
           </Link>
         </li>
@@ -233,16 +271,16 @@ const DataTable: FC<DataTableProps<T>> = ({
 
 export default DataTable;
 
-function findClosestMultiplesOf6(x: number) {
+function findClosestMultiples(x: number, y: number) {
   // Початкові значення для найближчих чисел, ініціалізовані як Infinity та -Infinity.
   let closestSmaller = -Infinity;
   let closestLarger = Infinity;
 
   // Знаходимо найближче число, менше `x`, що ділиться на 6.
-  closestSmaller = x - (x % 6);
+  closestSmaller = x - (x % y);
 
   // Знаходимо найближче число, більше `x`, що ділиться на 6.
-  closestLarger = closestSmaller + 6;
+  closestLarger = closestSmaller + y;
 
   return [closestSmaller, closestLarger];
 }

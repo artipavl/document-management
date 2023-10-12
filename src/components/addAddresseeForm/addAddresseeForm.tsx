@@ -26,12 +26,18 @@ export function AddAddresseeForm() {
   const [state, formAction] = useFormState(createFolder, initialState);
   return (
     <form action={formAction} className={styles.form}>
-      <label htmlFor="name">Назва</label>
-      <input type="name" id="name" name="name" required />
-      <label htmlFor="email">Пошта</label>
-      <input type="email" id="email" name="email" required />
-      <label htmlFor="phone">Телефон</label>
-      <input type="phone" id="phone" name="phone" />
+      <label htmlFor="name">
+        Назва
+        <input type="name" id="name" name="name" required />
+      </label>
+      <label htmlFor="email">
+        Пошта
+        <input type="email" id="email" name="email" required />
+      </label>
+      <label htmlFor="phone">
+        Телефон
+        <input type="phone" id="phone" name="phone" />
+      </label>
       <SubmitButton />
       <p aria-live="polite" className="sr-only">
         {state?.message}
