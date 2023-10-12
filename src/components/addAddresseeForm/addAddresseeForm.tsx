@@ -17,7 +17,7 @@ function SubmitButton() {
   const { pending } = useFormStatus();
   return (
     <button type="submit" aria-disabled={pending} className={styles.formBtn}>
-      <AiOutlinePlusCircle className={styles.formBtnIcon} />
+      Додати
     </button>
   );
 }
@@ -26,12 +26,39 @@ export function AddAddresseeForm() {
   const [state, formAction] = useFormState(createFolder, initialState);
   return (
     <form action={formAction} className={styles.form}>
-      <label htmlFor="name">Назва</label>
-      <input type="name" id="name" name="name" required />
-      <label htmlFor="email">Пошта</label>
-      <input type="email" id="email" name="email" required />
-      <label htmlFor="phone">Телефон</label>
-      <input type="phone" id="phone" name="phone" />
+       <legend className={styles.formLegend } >Додати нового адресата</legend>
+      <label className={styles.formLable} htmlFor="name">
+        Назва
+        <input
+          className={styles.formInput}
+          type="name"
+          id="name"
+          name="name"
+          placeholder="ТОВ ПХУ"
+          required
+        />
+      </label>
+      <label className={styles.formLable} htmlFor="email">
+        Пошта
+        <input
+          className={styles.formInput}
+          type="email"
+          id="email"
+          name="email"
+          placeholder="pxy@gmail.com"
+          required
+        />
+      </label>
+      <label className={styles.formLable} htmlFor="phone">
+        Телефон
+        <input
+          className={styles.formInput}
+          type="phone"
+          id="phone"
+          name="phone"
+          placeholder="+380978058751"
+        />
+      </label>
       <SubmitButton />
       <p aria-live="polite" className="sr-only">
         {state?.message}

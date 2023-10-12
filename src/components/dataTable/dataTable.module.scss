@@ -1,5 +1,5 @@
 .table {
-  @apply w-full bg-white border-solid border-gray-200 border;
+  @apply w-full bg-white border-solid border-gray-200 border overflow-hidden table-fixed;
 }
 
 .thead {
@@ -7,15 +7,18 @@
 }
 
 .th {
-  @apply px-3 py-4 text-left last:w-10 last:p-0;
+  @apply px-3 py-4 text-left last:w-10 last:p-0 text-subtitle-S;
 }
 
 .tr {
-  @apply border-solid border-gray-200 border;
+  @apply border-solid border-gray-200 border min-w-0 text-ellipsis;
 }
 
 .td {
-  @apply px-3 py-4 last:w-10 last:p-0;
+  @apply px-3 py-4 min-w-0 last:w-10 last:p-0 text-ellipsis;
+}
+.tdText {
+  @apply text-body-S text-ellipsis overflow-hidden w-full min-w-0 max-w-full;
 }
 
 .button {
@@ -23,7 +26,7 @@
 }
 
 .pagination {
-  @apply flex mt-4 max-xl:mb-6 justify-center;
+  @apply flex mt-4 max-xl:mb-6 justify-center items-center;
 }
 
 .paginationBtn {
@@ -31,7 +34,7 @@
 }
 
 .paginationBtnText {
-  @apply px-2;
+  @apply px-2 text-button-M;
 }
 
 .paginationBtnActive {
@@ -44,4 +47,12 @@
 
 .paginationBtnIcon {
   @apply w-6 h-6 text-current;
+}
+
+.paginationInformation {
+  @apply md:hidden;
+}
+
+.paginationBtnHidden {
+  @apply max-md:hidden
 }

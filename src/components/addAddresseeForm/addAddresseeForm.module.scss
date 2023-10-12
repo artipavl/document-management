@@ -1,9 +1,21 @@
 .form {
-  @apply flex gap-4;
+  @apply flex gap-4 p-4 flex-col bg-white border border-solid border-coolGray30;
+}
+
+.formLegend {
+  @apply text-coolGray90 text-heading-6 mb-2;
+}
+
+.formLable {
+  @apply flex gap-2 flex-col text-body-S text-coolGray90;
+}
+
+.formInput {
+  @apply px-4 py-3 text-body-M bg-coolGray10 border-b border-solid border-coolGray30 placeholder:text-coolGray60;
 }
 
 .formBtn {
-  @apply hover:text-red-600;
+  @apply px-7 py-4 text-white text-button-M bg-primary60 border-2 border-solid border-primary60 ml-auto hover:text-primary60 hover:bg-white focus:text-primary60 focus:bg-white;
 }
 
 .formBtnIcon {
