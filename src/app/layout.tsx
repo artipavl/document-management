@@ -29,6 +29,7 @@ export default function RootLayout({
           "xl:flex bg-gray-100 xl:items-stretch min-h-screen"
         }
       >
+        <div id="portal" />
         {children}
       </body>
     </html>
