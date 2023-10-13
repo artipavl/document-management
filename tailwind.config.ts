@@ -13,7 +13,7 @@ const config: Config = {
 				error: '#DA1E28',
 				warning: '#DA1E28',
 				success: '#DA1E28',
-				overlay: '#121619 / 50%',
+				overlay: '#121619BF',
 				coolGray10: '#f2f4f8',
 				coolGray20: '#dde1e6',
 				coolGray30: '#c1c7cd',
