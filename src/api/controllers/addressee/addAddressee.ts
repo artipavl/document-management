@@ -16,7 +16,6 @@ export const addAddressee = async ({
       phone,
       underAddressee,
     });
-    // return Addressee;
   } catch (error) {
     console.log(error);
   }
