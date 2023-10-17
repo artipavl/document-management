@@ -26,8 +26,9 @@ interface IAddAddressee {
   name: string;
   email: string;
   phone?: string;
-  underAddressee: IUnderAddressee[];
+  underAddressee?: IUnderAddressee[];
 }
+
 interface IAddFolder {
   name: string;
 }

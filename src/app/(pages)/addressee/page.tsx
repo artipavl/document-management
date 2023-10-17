@@ -1,6 +1,6 @@
 import { getAddressees } from "@/api/controllers/addressee/getAddressees";
 import { getAddresseesInPage } from "@/api/controllers/addressee/getAddresseesInPage";
-import { AddAddresseeForm } from "@/components/addAddresseeForm/addAddresseeForm";
+import AddAddresseeForm from "@/components/addAddresseeForm/addAddresseeForm";
 import DataTable from "@/components/dataTable/dataTable";
 import Title from "@/components/title/title";
 import React, { FC } from "react";

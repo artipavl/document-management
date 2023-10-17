@@ -1,12 +1,18 @@
 "use client";
 
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import {
+  Formik,
+  Field,
+  Form,
+  ErrorMessage,
+  FormikConfig,
+  FormikValues,
+} from "formik";
 import * as Yup from "yup";
 import { createFolder } from "./actions";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import styles from "./addFolderForm.module.scss";
-
 
 const AddForm: React.FC = () => {
   const initialValues: IAddFolder = { name: "" };
@@ -17,16 +23,15 @@ const AddForm: React.FC = () => {
 
   const handleSubmit = (
     values: IAddFolder,
-    { setSubmitting, setStatus }: any
+    { setSubmitting, setStatus, resetForm }: any
   ) => {
     createFolder(values)
       .then((response) => {
         setStatus({ message: "Папку успішно створено" });
-        // Додати додаткову логіку обробки успішного створення папки
+        resetForm();
       })
       .catch((error) => {
         setStatus({ message: "Помилка створення папки" });
-        // Обробка помилки при створенні папки
       })
       .finally(() => {
         setSubmitting(false);
