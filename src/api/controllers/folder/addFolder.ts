@@ -1,11 +1,7 @@
 import connectDB from "../../connect-db";
 import FolderModel from "@/api/models/folder";
 
-interface getFoldersProps {
-  name: string;
-}
-
-export const addFolders = async ({ name }: getFoldersProps) => {
+export const addFolders = async ({ name }: IAddFolder) => {
   try {
     await connectDB();
     const Folders = await FolderModel.create({

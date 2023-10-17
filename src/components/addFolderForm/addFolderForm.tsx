@@ -1,39 +1,59 @@
 "use client";
 
-// @ts-expect-error
-import { experimental_useFormState as useFormState } from "react-dom";
-
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { createFolder } from "./actions";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import styles from "./addFolderForm.module.scss";
 
-const initialState = {
-  message: null,
+
+const AddForm: React.FC = () => {
+  const initialValues: IAddFolder = { name: "" };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Поле 'Додати папку' обов'язкове"),
+  });
+
+  const handleSubmit = (
+    values: IAddFolder,
+    { setSubmitting, setStatus }: any
+  ) => {
+    createFolder(values)
+      .then((response) => {
+        setStatus({ message: "Папку успішно створено" });
+        // Додати додаткову логіку обробки успішного створення папки
+      })
+      .catch((error) => {
+        setStatus({ message: "Помилка створення папки" });
+        // Обробка помилки при створенні папки
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
+  };
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      <Form className={styles.form}>
+        <label htmlFor="name">Додати папку</label>
+        <Field type="text" id="name" name="name" required />
+        <ErrorMessage name="name" component="div" />
+
+        <button type="submit" className={styles.formBtn}>
+          <AiOutlinePlusCircle className={styles.formBtnIcon} />
+        </button>
+
+        <p aria-live="polite" className="sr-only">
+          {/* Відображення повідомлення про статус форми */}
+        </p>
+      </Form>
+    </Formik>
+  );
 };
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <button type="submit" aria-disabled={pending} className={styles.formBtn}>
-      <AiOutlinePlusCircle className={styles.formBtnIcon} />
-    </button>
-  );
-}
-
-export function AddForm() {
-  const [state, formAction] = useFormState(createFolder, initialState);
-
-  return (
-    <form action={formAction} className={styles.form}>
-      <label htmlFor="name">Додати папку</label>
-      <input type="name" id="name" name="name" required />
-      <SubmitButton />
-      <p aria-live="polite" className="sr-only">
-        {state?.message}
-      </p>
-    </form>
-  );
-}
+export default AddForm;

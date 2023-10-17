@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { FC } from "react";
 
 import styles from "./foldersNav.module.scss";
-import { AddForm } from "../addFolderForm/addFolderForm";
+import AddForm from "../addFolderForm/addFolderForm";
 
 type FoldersNavProps = {
   folders: IFolder[];

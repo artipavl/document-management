@@ -3,9 +3,9 @@
 import { addFolders } from "@/api/controllers/folder/addFolder";
 import { revalidatePath } from "next/cache";
 
-export async function createFolder(prevState: any, formData: FormData) {
+export async function createFolder(value: IAddFolder) {
   try {
-    await addFolders({ name: String(formData.get("name")) });
+    await addFolders(value);
     return revalidatePath("/");
   } catch (e) {
     return { message: "Failed to create" };

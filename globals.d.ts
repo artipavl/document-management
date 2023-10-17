@@ -28,5 +28,8 @@ interface IAddAddressee {
   phone?: string;
   underAddressee: IUnderAddressee[];
 }
+interface IAddFolder {
+  name: string;
+}
 
 type T = any;
