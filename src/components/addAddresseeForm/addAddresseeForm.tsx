@@ -100,42 +100,47 @@ const AddAddresseeForm: React.FC = () => {
             name="underAddressee"
             render={(arrayHelpers) => (
               <div>
-                {props.values.underAddressee.map((friend, index) => (
-                  <div key={index}>
-                    <label
-                      className={styles.formLabel}
-                      htmlFor={`underAddressee[${index}].name`}
-                    >
-                      Назва
-                      <Field
-                        type="text"
-                        id={`underAddressee[${index}].name`}
-                        name={`underAddressee[${index}].name`}
-                        className={styles.formInput}
-                      />
-                    </label>
-                    <label
-                      className={styles.formLabel}
-                      htmlFor={`underAddressee[${index}].peopleName`}
-                    >
-                      ПІБ
-                      <Field
-                        type="text"
-                        id={`underAddressee[${index}].peopleName`}
-                        name={`underAddressee[${index}].peopleName`}
-                        className={styles.formInput}
-                      />
-                    </label>
-                    <button
-                      type="button"
-                      onClick={() => arrayHelpers.remove(index)}
-                    >
-                      -
-                    </button>
-                  </div>
-                ))}
+                <p className={styles.formArrayTitle}>Отримувачі</p>
+                <ul className={styles.formArrayList}>
+                  {props.values.underAddressee.map((friend, index) => (
+                    <li key={index} className={styles.formArrayItem}>
+                      <label
+                        className={styles.formLabel}
+                        htmlFor={`underAddressee[${index}].name`}
+                      >
+                        Назва
+                        <Field
+                          type="text"
+                          id={`underAddressee[${index}].name`}
+                          name={`underAddressee[${index}].name`}
+                          className={styles.formInput}
+                        />
+                      </label>
+                      <label
+                        className={styles.formLabel}
+                        htmlFor={`underAddressee[${index}].peopleName`}
+                      >
+                        ПІБ
+                        <Field
+                          type="text"
+                          id={`underAddressee[${index}].peopleName`}
+                          name={`underAddressee[${index}].peopleName`}
+                          className={styles.formInput}
+                        />
+                      </label>
+                      <button
+                        type="button"
+                        className={styles.formArrayItemBtn}
+                        onClick={() => arrayHelpers.remove(index)}
+                      >
+                        -
+                      </button>
+                    </li>
+                  ))}
+                </ul>
                 <button
                   type="button"
+                  className={styles.formBtn}
                   onClick={() =>
                     arrayHelpers.push({ name: "", peopleName: "" })
                   }
@@ -147,7 +152,6 @@ const AddAddresseeForm: React.FC = () => {
           />
 
           <button type="submit" className={styles.formBtn}>
-            <AiOutlinePlusCircle className={styles.formBtnIcon} />
             Додати
           </button>
           <p aria-live="polite" className="sr-only">
