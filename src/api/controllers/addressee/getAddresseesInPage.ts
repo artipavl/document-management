@@ -43,10 +43,10 @@ export const getAddresseesInPage = async ({
       ]);
       total = result ? result.total : 0;
     }
-    
-    const Addressees = await AddresseeModel.aggregate(pipeline);
 
-    if (Addressees.length > 0) {
+    const addressees: IAddressee[] = await AddresseeModel.aggregate(pipeline);
+
+    if (addressees.length > 0) {
       const [result] = await AddresseeModel.aggregate([
         {
           $count: "total",
@@ -55,7 +55,7 @@ export const getAddresseesInPage = async ({
       total = result ? result.total : 0;
     }
 
-    return { addressees: Addressees as IAddressee[], total };
+    return { addressees, total };
   } catch (error) {
     console.log(error);
     return { addressees: [], total: 0 };
