@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ReactComponentElement } from "react";
 import {
   AiOutlineEllipsis,
   AiOutlineLeft,
@@ -7,6 +7,8 @@ import {
 
 import styles from "./dataTable.module.scss";
 import Link from "next/link";
+import Overlay from "@/reusableComponents/overlay/overlay";
+import AddAddresseeForm from "../addAddresseeForm/addAddresseeForm";
 
 type DataTableProps<T> = {
   data: T[];
@@ -17,6 +19,8 @@ type DataTableProps<T> = {
   total: number;
   search?: string;
   pathname: string;
+  id?: string;
+  children?: React.ReactNode;
 };
 
 const DataTable: FC<DataTableProps<T>> = ({
@@ -28,10 +32,13 @@ const DataTable: FC<DataTableProps<T>> = ({
   total,
   pathname,
   search = "",
+  id,
+  children,
 }) => {
   const [closestSmaller, closestLarger] = findClosestMultiples(page, 6);
   return (
     <>
+      {children}
       <table cellSpacing={0} className={styles.table}>
         <thead className={styles.thead}>
           <tr>
@@ -52,9 +59,20 @@ const DataTable: FC<DataTableProps<T>> = ({
                 </td>
               ))}
               <td className={styles.td}>
-                <button type="button" className={styles.button}>
+                <Link
+                  className={styles.button}
+                  href={{
+                    pathname,
+                    query: {
+                      ...(search ? { search } : {}),
+                      ...(limit ? { limit } : {}),
+                      ...(page ? { page } : {}),
+                      id: item._id.toString() ? item._id.toString() : "",
+                    },
+                  }}
+                >
                   <AiOutlineEllipsis />
-                </button>
+                </Link>
               </td>
             </tr>
           ))}
