@@ -7,8 +7,12 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import styles from "./addAddresseeForm.module.scss";
 
-const AddAddresseeForm: React.FC = () => {
-  const initialValues = {
+interface Props {
+  data?: IAddressee;
+}
+
+const AddAddresseeForm: React.FC<Props> = ({ data }) => {
+  const initialValues: IAddAddressee = {
     name: "",
     email: "",
     phone: "",
@@ -18,6 +22,7 @@ const AddAddresseeForm: React.FC = () => {
         peopleName: "",
       },
     ],
+    ...data,
   };
 
   const validationSchema = Yup.object({
@@ -38,13 +43,22 @@ const AddAddresseeForm: React.FC = () => {
     values: IAddAddressee,
     { setSubmitting, setStatus, resetForm }: any
   ) => {
-    createAddressee(values)
+    const id = data ? data._id.toString() : undefined;
+    createAddressee(values, id)
       .then((response) => {
-        setStatus({ message: "Адресата успішно додано" });
-        resetForm();
+        setStatus({
+          message: data
+            ? "Адресата успішно змінено"
+            : "Адресата успішно додано",
+        });
+        !data && resetForm();
       })
       .catch((error) => {
-        setStatus({ message: "Помилка додавання адресата" });
+        setStatus({
+          message: data
+            ? "Помилка змін у адресаті"
+            : "Помилка додавання адресата",
+        });
       })
       .finally(() => {
         setSubmitting(false);
@@ -152,7 +166,7 @@ const AddAddresseeForm: React.FC = () => {
           />
 
           <button type="submit" className={styles.formBtn}>
-            Додати
+            {data ? "Зберегти" : "Додати"}
           </button>
           <p aria-live="polite" className="sr-only">
             {props.status && props.status.message}

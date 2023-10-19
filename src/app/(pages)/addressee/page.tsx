@@ -3,6 +3,8 @@ import { getAddresseesInPage } from "@/api/controllers/addressee/getAddresseesIn
 import AddAddresseeForm from "@/components/addAddresseeForm/addAddresseeForm";
 import DataTable from "@/components/dataTable/dataTable";
 import Title from "@/components/title/title";
+import Overlay from "@/reusableComponents/overlay/overlay";
+import Link from "next/link";
 import React, { FC } from "react";
 
 type PageProps = {
@@ -16,6 +18,7 @@ const Todo: FC<PageProps> = async ({ searchParams }) => {
     typeof searchParams.limit === "string" ? Number(searchParams.limit) : 10;
   const search =
     typeof searchParams.search === "string" ? searchParams.search : undefined;
+  const id = typeof searchParams.id === "string" ? searchParams.id : undefined;
 
   const { addressees, total } = await getAddresseesInPage({
     page,
@@ -34,8 +37,32 @@ const Todo: FC<PageProps> = async ({ searchParams }) => {
         limit={limit}
         total={total}
         search={search}
+        id={id}
         pathname="/addressee"
-      />
+      >
+        {id && (
+          <Overlay>
+            <div className="max-h-[70%] max-w-[50%] translate-x-1/2 translate-y-1/2 overflow-hidden">
+              <Link
+                className="absolute right-2 top-2 px-3 py-2 mt-auto text-white text-button-M bg-primary60 border-2 border-solid border-primary60 hover:text-primary60 hover:bg-white focus:text-primary60 focus:bg-white"
+                href={{
+                  pathname: "/addressee",
+                  query: {
+                    ...(search ? { search } : {}),
+                    ...(limit ? { limit } : {}),
+                    ...(page ? { page } : {}),
+                  },
+                }}
+              >
+                X
+              </Link>
+              <AddAddresseeForm
+                data={addressees.find((item) => item._id.toString() === id)}
+              />
+            </div>
+          </Overlay>
+        )}
+      </DataTable>
     </div>
   );
 };

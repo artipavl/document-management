@@ -5,7 +5,7 @@ class UnderAddressee {
   public name!: string;
 
   @prop({})
-  public peopleName: string;
+  public peopleName!: string;
 }
 
 class Addressee {
