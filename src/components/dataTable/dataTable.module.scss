@@ -64,3 +64,7 @@
 .closeButton {
   @apply absolute right-2 top-2 px-3 py-2 mt-auto text-white text-button-M bg-primary60 border-2 border-solid border-primary60 hover:text-primary60 hover:bg-white focus:text-primary60 focus:bg-white;
 }
+
+.thLink {
+  @apply flex items-center gap-2;
+}

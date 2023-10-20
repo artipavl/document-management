@@ -1,5 +1,7 @@
 import React, { FC, ReactComponentElement } from "react";
 import {
+  AiOutlineArrowDown,
+  AiOutlineArrowUp,
   AiOutlineEllipsis,
   AiOutlineLeft,
   AiOutlineRight,
@@ -20,6 +22,8 @@ type DataTableProps<T> = {
   search?: string;
   pathname: string;
   id?: string;
+  sort: string;
+  issort: 1|-1;
   children?: React.ReactNode;
 };
 
@@ -33,9 +37,18 @@ const DataTable: FC<DataTableProps<T>> = ({
   pathname,
   search = "",
   id,
+  sort,
+  issort,
   children,
 }) => {
   const [closestSmaller, closestLarger] = findClosestMultiples(page, 6);
+  const query = {
+    ...(search ? { search } : {}),
+    ...(limit ? { limit } : {}),
+    ...(page ? { page } : {}),
+    ...(sort ? { sort } : {}),
+    ...(issort ? { issort } : {}),
+  };
   return (
     <>
       {children}
@@ -44,7 +57,26 @@ const DataTable: FC<DataTableProps<T>> = ({
           <tr>
             {keys.map((row, index) => (
               <th className={styles.th} key={index}>
-                {thName[index]}
+                <Link
+                className={styles.thLink}
+                  href={{
+                    pathname,
+                    query: {
+                      ...query,
+                      sort: keys[index].toString(),
+                      issort:
+                        sort === keys[index] ? (issort === 1 ? -1 : 1) : 1,
+                    },
+                  }}
+                >
+                  {thName[index]}
+                  {sort === keys[index] &&
+                    (issort === 1 ? (
+                      <AiOutlineArrowDown />
+                    ) : (
+                      <AiOutlineArrowUp />
+                    ))}
+                </Link>
               </th>
             ))}
             <th className={styles.th}></th>
@@ -64,9 +96,7 @@ const DataTable: FC<DataTableProps<T>> = ({
                   href={{
                     pathname,
                     query: {
-                      ...(search ? { search } : {}),
-                      ...(limit ? { limit } : {}),
-                      ...(page ? { page } : {}),
+                      ...query,
                       id: item._id.toString() ? item._id.toString() : "",
                     },
                   }}
@@ -90,8 +120,7 @@ const DataTable: FC<DataTableProps<T>> = ({
             href={{
               pathname,
               query: {
-                ...(search ? { search } : {}),
-                ...(limit ? { limit } : {}),
+                ...query,
                 page: page > 1 ? page - 1 : 1,
               },
             }}
@@ -131,8 +160,7 @@ const DataTable: FC<DataTableProps<T>> = ({
                   href={{
                     pathname,
                     query: {
-                      ...(search ? { search } : {}),
-                      ...(limit ? { limit } : {}),
+                      ...query,
                       page: p,
                     },
                   }}
@@ -158,8 +186,7 @@ const DataTable: FC<DataTableProps<T>> = ({
                   href={{
                     pathname,
                     query: {
-                      ...(search ? { search } : {}),
-                      ...(limit ? { limit } : {}),
+                      ...query,
                       page: Math.ceil(total / limit),
                     },
                   }}
@@ -187,8 +214,7 @@ const DataTable: FC<DataTableProps<T>> = ({
                   href={{
                     pathname,
                     query: {
-                      ...(search ? { search } : {}),
-                      ...(limit ? { limit } : {}),
+                      ...query,
                       page: p,
                     },
                   }}
@@ -215,8 +241,7 @@ const DataTable: FC<DataTableProps<T>> = ({
                   href={{
                     pathname,
                     query: {
-                      ...(search ? { search } : {}),
-                      ...(limit ? { limit } : {}),
+                      ...query,
                       page: p,
                     },
                   }}
@@ -243,8 +268,7 @@ const DataTable: FC<DataTableProps<T>> = ({
                   href={{
                     pathname,
                     query: {
-                      ...(search ? { search } : {}),
-                      ...(limit ? { limit } : {}),
+                      ...query,
                       page: p,
                     },
                   }}
@@ -266,8 +290,7 @@ const DataTable: FC<DataTableProps<T>> = ({
             href={{
               pathname,
               query: {
-                ...(search ? { search } : {}),
-                ...(limit ? { limit } : {}),
+                ...query,
                 page: page === Math.ceil(total / limit) ? page : page + 1,
               },
             }}

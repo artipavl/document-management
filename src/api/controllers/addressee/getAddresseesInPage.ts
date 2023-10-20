@@ -5,10 +5,14 @@ export const getAddresseesInPage = async ({
   query,
   page = 1,
   limit = 10,
+  sort,
+  issort,
 }: {
   query?: string;
   page: number;
   limit: number;
+  sort: string;
+  issort: 1 | -1;
 }): Promise<{ addressees: IAddressee[]; total: number }> => {
   try {
     let total = 0;
@@ -44,7 +48,9 @@ export const getAddresseesInPage = async ({
       total = result ? result.total : 0;
     }
 
-    const addressees: IAddressee[] = await AddresseeModel.aggregate(pipeline);
+    const addressees: IAddressee[] = await AddresseeModel.aggregate(
+      pipeline
+    ).sort({ [sort]: issort });
 
     if (addressees.length > 0) {
       const [result] = await AddresseeModel.aggregate([
