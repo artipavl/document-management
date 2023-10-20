@@ -19,11 +19,17 @@ const Todo: FC<PageProps> = async ({ searchParams }) => {
   const search =
     typeof searchParams.search === "string" ? searchParams.search : undefined;
   const id = typeof searchParams.id === "string" ? searchParams.id : undefined;
+  const sort =
+    typeof searchParams.sort === "string" ? searchParams.sort : "name";
+  const issort =
+    typeof searchParams.issort === "string" ? Number(searchParams.issort) : 1;
 
   const { addressees, total } = await getAddresseesInPage({
     page,
     limit,
     query: search,
+    sort,
+    issort:issort===1&& issort || issort===-1 && issort || 1,
   });
   return (
     <div>
@@ -38,6 +44,8 @@ const Todo: FC<PageProps> = async ({ searchParams }) => {
         total={total}
         search={search}
         id={id}
+        sort={sort}
+        issort={issort===1&& issort || issort===-1 && issort || 1}
         pathname="/addressee"
       >
         {id && (
@@ -51,6 +59,8 @@ const Todo: FC<PageProps> = async ({ searchParams }) => {
                     ...(search ? { search } : {}),
                     ...(limit ? { limit } : {}),
                     ...(page ? { page } : {}),
+                    ...(sort ? { sort } : {}),
+                    ...(issort ? { issort } : {}),
                   },
                 }}
               >
