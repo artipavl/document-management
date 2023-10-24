@@ -98,7 +98,7 @@ const Header: FC<HeaderProps> = (props) => {
                 }
               >
                 <AiOutlineBook className={style.headerNavIcon} />
-                <span>Вділи</span>
+                <span>Відділи</span>
               </Link>
             </li>
             <li>

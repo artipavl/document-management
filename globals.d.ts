@@ -34,3 +34,21 @@ interface IAddFolder {
 }
 
 type T = any;
+
+interface IAddDepartment {
+  name: string;
+  email: string;
+  phone?: string;
+  description?: string;
+  employees?: string[];
+}
+
+interface IDepartment {
+  _id: Types.ObjectId;
+  name: string;
+  email: string;
+  phone?: string;
+  description?: string;
+  employees: string[];
+  __v: number;
+}

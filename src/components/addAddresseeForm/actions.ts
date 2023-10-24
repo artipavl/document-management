@@ -6,7 +6,6 @@ import { revalidatePath } from "next/cache";
 
 export async function createAddressee(values: IAddAddressee, id?: string) {
   try {
-    console.log(id);
     if (id) {
       await updateAddresseeById(values, id);
     } else {
