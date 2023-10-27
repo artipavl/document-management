@@ -48,9 +48,9 @@ export const getAddresseesInPage = async ({
       total = result ? result.total : 0;
     }
 
-    const addressees: IAddressee[] = await AddresseeModel.aggregate(
-      pipeline
-    ).sort({ [sort]: issort });
+    const addressees = await AddresseeModel.aggregate(pipeline).sort({
+      [sort]: issort,
+    });
 
     if (addressees.length > 0) {
       const [result] = await AddresseeModel.aggregate([
@@ -61,7 +61,14 @@ export const getAddresseesInPage = async ({
       total = result ? result.total : 0;
     }
 
-    return { addressees, total };
+    const addresseesAsString: IAddressee[] = addressees.map((addresse) => {
+      return {
+        ...addresse,
+        _id: addresse._id.toString(),
+      };
+    });
+
+    return { addressees: addresseesAsString, total };
   } catch (error) {
     console.log(error);
     return { addressees: [], total: 0 };
