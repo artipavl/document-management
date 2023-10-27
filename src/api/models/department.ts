@@ -1,4 +1,5 @@
-import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
+import { prop, getModelForClass, type Ref } from "@typegoose/typegoose";
+import { Types } from "mongoose";
 import { string } from "yup";
 
 class Department {
@@ -16,6 +17,9 @@ class Department {
 
   @prop({ type: () => string, default: [], required: false })
   public employees?: string[];
+
+  @prop({ ref: Department })
+  public dependent?: Ref<Department>;
 }
 
 const DepartmentModel = getModelForClass(Department);
