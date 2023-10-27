@@ -8,15 +8,17 @@ import styles from "./addDepartmentForm.module.scss";
 
 interface Props {
   data?: IDepartment;
+  dependents: IDepartment[];
 }
 
-const AddDepartmentForm: React.FC<Props> = ({ data }) => {
+const AddDepartmentForm: React.FC<Props> = ({ data, dependents }) => {
   const initialValues: IAddDepartment = {
     name: "",
     email: "",
     phone: "",
     description: "",
     employees: [],
+    dependent: undefined,
     ...data,
   };
 
@@ -28,6 +30,7 @@ const AddDepartmentForm: React.FC<Props> = ({ data }) => {
     phone: Yup.string().matches(/^\+?\d+$/, "Невірний формат телефону"),
     description: Yup.string(),
     employees: Yup.array().of(Yup.string()),
+    dependent: Yup.string(),
   });
 
   const handleSubmit = (
@@ -109,6 +112,29 @@ const AddDepartmentForm: React.FC<Props> = ({ data }) => {
               placeholder="Опис"
               className={styles.formInput}
             />
+            <ErrorMessage name="description" component="div" />
+          </label>
+          <label className={styles.formLabel} htmlFor="phone">
+            Підпорядкований
+            <Field
+              as="select"
+              id="dependent"
+              name="dependent"
+              placeholder="Підпорядкований"
+              className={styles.formInput}
+            >
+              <option key={0} value={undefined}>
+                {}
+              </option>
+              {dependents.map(
+                (dependent) =>
+                  data?._id !== dependent._id && (
+                    <option key={dependent._id} value={dependent._id}>
+                      {dependent.name}
+                    </option>
+                  )
+              )}
+            </Field>
             <ErrorMessage name="description" component="div" />
           </label>
 
