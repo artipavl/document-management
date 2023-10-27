@@ -13,8 +13,7 @@ export const updateAddresseeById = async (
   };
   try {
     await connectDB();
-    const Addressees = await AddresseeModel.findByIdAndUpdate(id, data);
-    return Addressees as IAddressee;
+    await AddresseeModel.findByIdAndUpdate(id, data);
   } catch (error) {
     console.log(error);
   }
