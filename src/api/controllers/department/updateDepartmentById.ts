@@ -7,8 +7,7 @@ export const updateDepartmentById = async (
 ) => {
   try {
     await connectDB();
-    const Department = await DepartmentModel.findByIdAndUpdate(id, data);
-    return Department as IDepartment;
+    await DepartmentModel.findByIdAndUpdate(id, data);
   } catch (error) {
     console.log(error);
   }

@@ -1,4 +1,5 @@
 import { getDepartmentInPage } from "@/api/controllers/department/getDepartmentPage";
+import { getDepartments } from "@/api/controllers/department/getDepartments";
 import AddDepartmentForm from "@/components/addDepartmentForm/addDepartmentForm";
 import DataTable from "@/components/dataTable/dataTable";
 import Title from "@/components/title/title";
@@ -30,10 +31,13 @@ const Departments: FC<PageProps> = async ({ searchParams }) => {
     sort,
     issort: (issort === 1 && issort) || (issort === -1 && issort) || 1,
   });
+
+  const dependents = await getDepartments();
+
   return (
     <div className="flex flex-col gap-6">
       <Title title="Відділи" />
-      <AddDepartmentForm />
+      <AddDepartmentForm dependents={dependents} />
       <DataTable
         data={departments}
         keys={["name", "email", "phone"]}
@@ -66,6 +70,7 @@ const Departments: FC<PageProps> = async ({ searchParams }) => {
                 X
               </Link>
               <AddDepartmentForm
+                dependents={dependents}
                 data={departments.find((item) => item._id.toString() === id)}
               />
             </div>

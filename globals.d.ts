@@ -41,14 +41,15 @@ interface IAddDepartment {
   phone?: string;
   description?: string;
   employees?: string[];
+  dependent?: Types.ObjectId;
 }
 
 interface IDepartment {
-  _id: Types.ObjectId;
+  _id: string;
   name: string;
   email: string;
   phone?: string;
   description?: string;
   employees: string[];
-  __v: number;
+  dependent?: string;
 }

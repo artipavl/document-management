@@ -48,9 +48,9 @@ export const getDepartmentInPage = async ({
       total = result ? result.total : 0;
     }
 
-    const departments: IDepartment[] = await DepartmentModel.aggregate(
-      pipeline
-    ).sort({ [sort]: issort });
+    const departments = await DepartmentModel.aggregate(pipeline).sort({
+      [sort]: issort,
+    });
 
     if (departments.length > 0) {
       const [result] = await DepartmentModel.aggregate([
@@ -61,7 +61,15 @@ export const getDepartmentInPage = async ({
       total = result ? result.total : 0;
     }
 
-    return { departments, total };
+    const departmentsAsString: IDepartment[] = departments.map((department) => {
+      return {
+        ...department,
+        _id: department._id.toString(),
+        dependent: department.dependent?.toString(),
+      };
+    });
+
+    return { departments: departmentsAsString, total };
   } catch (error) {
     console.log(error);
     return { departments: [], total: 0 };
