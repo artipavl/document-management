@@ -7,6 +7,7 @@ export const addDepartment = async ({
   phone,
   description,
   employees,
+  dependent,
 }: IAddDepartment) => {
   const data: IAddDepartment = {
     name,
@@ -14,6 +15,7 @@ export const addDepartment = async ({
     ...(phone ? { phone } : {}),
     ...(description ? { description } : {}),
     ...(employees ? { employees } : {}),
+    ...(dependent ? { dependent } : {}),
   };
   try {
     await connectDB();
