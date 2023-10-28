@@ -73,7 +73,9 @@ const AddAddresseeForm: React.FC<Props> = ({ data }) => {
     >
       {(props) => (
         <Form className={styles.form}>
-          <legend className={styles.formLegend}>Додати нового адресата</legend>
+          <legend className={styles.formLegend}>
+            {data ? "Редагування адресату" : "Додати нового адресата"}
+          </legend>
           <label className={styles.formLabel} htmlFor="name">
             Назва
             <Field

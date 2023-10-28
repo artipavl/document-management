@@ -1,6 +1,28 @@
 declare module "*.module.css";
 declare module "*.module.scss";
 
+type PipelineStage =
+  | {
+      $search: {
+        index: string;
+        text: {
+          query: string;
+          fuzzy: {};
+          path: {
+            wildcard: string;
+          };
+        };
+      };
+    }
+  | {
+      $skip: number;
+    }
+  | {
+      $limit: number;
+    }
+  | { $set: object }
+  | { $project: object };
+
 interface IFolder {
   _id: Types.ObjectId;
   name: string;
@@ -40,8 +62,7 @@ interface IAddDepartment {
   email: string;
   phone?: string;
   description?: string;
-  employees?: string[];
-  dependent?: Types.ObjectId;
+  dependent?: string;
 }
 
 interface IDepartment {
@@ -50,6 +71,29 @@ interface IDepartment {
   email: string;
   phone?: string;
   description?: string;
-  employees: string[];
+  employees: IUser[];
   dependent?: string;
+}
+
+interface IAddUser {
+  name: string;
+  surname: string;
+  lastName?: string;
+  age: number;
+  email: string;
+  phone?: string;
+  jobPosition?: string;
+  department?: string;
+}
+
+interface IUser {
+  _id: string;
+  name: string;
+  surname: string;
+  lastName?: string;
+  age: number;
+  email: string;
+  phone?: string;
+  jobPosition?: string;
+  department?: string;
 }

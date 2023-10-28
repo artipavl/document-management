@@ -2,28 +2,32 @@
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
-import { createDepartment } from "./actions";
+import { createUser } from "./actions";
 
-import styles from "./addDepartmentForm.module.scss";
+import styles from "./addUserForm.module.scss";
 
 interface Props {
-  data?: IDepartment;
-  dependents: IDepartment[];
+  data?: IUser;
+  departments: IDepartment[];
 }
 
-const AddDepartmentForm: React.FC<Props> = ({ data, dependents }) => {
-  const initialValues: IAddDepartment = {
+const AddUserForm: React.FC<Props> = ({ data, departments }) => {
+  const initialValues: IAddUser = {
     name: "",
+    surname: "",
+    lastName: "",
+    jobPosition: "",
+    age: 0,
     email: "",
     phone: "",
-    description: "",
-    employees: [],
-    dependent: undefined,
+    department: undefined,
     ...data,
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("Поле 'Назва' обов'язкове"),
+    name: Yup.string().required("Поле 'Ім'я' обов'язкове"),
+    surname: Yup.string().required("Поле 'Прізвище' обов'язкове"),
+    lastName: Yup.string(),
     email: Yup.string()
       .email("Невірний формат пошти")
       .required("Поле 'Пошта' обов'язкове"),
@@ -34,24 +38,24 @@ const AddDepartmentForm: React.FC<Props> = ({ data, dependents }) => {
   });
 
   const handleSubmit = (
-    values: IAddDepartment,
+    values: IAddUser,
     { setSubmitting, setStatus, resetForm }: any
   ) => {
     const id = data ? data._id.toString() : undefined;
-    createDepartment(values, id)
+    createUser(values, id)
       .then((response) => {
         setStatus({
           message: data
-            ? "Адресата успішно змінено"
-            : "Адресата успішно додано",
+            ? "Користувач успішно змінено"
+            : "Користувача успішно додано",
         });
         !data && resetForm();
       })
       .catch((error) => {
         setStatus({
           message: data
-            ? "Помилка змін у адресаті"
-            : "Помилка додавання адресата",
+            ? "Помилка змін у користувачі"
+            : "Помилка додавання користувача",
         });
       })
       .finally(() => {
@@ -67,19 +71,43 @@ const AddDepartmentForm: React.FC<Props> = ({ data, dependents }) => {
     >
       {(props) => (
         <Form className={styles.form}>
-          <legend className={styles.formLegend}>{data?"Редагування відділу":"Додати нового відділу"}</legend>
+          <legend className={styles.formLegend}>{data?"Редагування користувача":"Додати нового Користувача"}</legend>
           <label className={styles.formLabel} htmlFor="name">
-            Назва
+            Імя
             <Field
               type="text"
               id="name"
               name="name"
-              placeholder="Відділ документообігу"
+              placeholder="Петро"
               className={styles.formInput}
               required
             />
             <ErrorMessage name="name" component="div" />
           </label>
+          <label className={styles.formLabel} htmlFor="name">
+            Прізвище
+            <Field
+              type="text"
+              id="surname"
+              name="surname"
+              placeholder="Петров"
+              className={styles.formInput}
+              required
+            />
+            <ErrorMessage name="surname" component="div" />
+          </label>
+          <label className={styles.formLabel} htmlFor="name">
+            По батькові
+            <Field
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Петрович"
+              className={styles.formInput}
+            />
+            <ErrorMessage name="lastName" component="div" />
+          </label>
+
           <label className={styles.formLabel} htmlFor="email">
             Пошта
             <Field
@@ -103,58 +131,38 @@ const AddDepartmentForm: React.FC<Props> = ({ data, dependents }) => {
             />
             <ErrorMessage name="phone" component="div" />
           </label>
-          <label className={styles.formLabel} htmlFor="phone">
-            Опис
+
+          <label className={styles.formLabel} htmlFor="name">
+            Посада
             <Field
               type="text"
-              id="description"
-              name="description"
-              placeholder="Опис"
+              id="jobPosition"
+              name="jobPosition"
+              placeholder="Головний спеціаліст"
               className={styles.formInput}
             />
-            <ErrorMessage name="description" component="div" />
+            <ErrorMessage name="jobPosition" component="div" />
           </label>
+
           <label className={styles.formLabel} htmlFor="phone">
-            Підпорядкований
+            Працює у
             <Field
               as="select"
-              id="dependent"
-              name="dependent"
-              placeholder="Підпорядкований"
+              id="department"
+              name="department"
               className={styles.formInput}
             >
               <option key={0} value={undefined}>
                 {}
               </option>
-              {dependents.map(
-                (dependent) =>
-                  data?._id !== dependent._id && (
-                    <option key={dependent._id} value={dependent._id}>
-                      {dependent.name}
-                    </option>
-                  )
-              )}
+              {departments.map((department) => (
+                <option key={department._id} value={department._id}>
+                  {department.name}
+                </option>
+              ))}
             </Field>
             <ErrorMessage name="description" component="div" />
           </label>
-
-          {data && (
-            <>
-              <p className={styles.formLabel}>Працівники </p>
-              <ul>
-                {data.employees.map((employee) => (
-                  <li key={employee._id}>
-                    ПІБ:
-                    {" " + employee.name}
-                    {" " + employee.surname + " "}
-                    {employee.lastName && employee.lastName + " "}
-                    Посада:
-                    {employee.jobPosition ? " " + employee.jobPosition : " -"}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
 
           <button type="submit" className={styles.formBtn}>
             {data ? "Зберегти" : "Додати"}
@@ -168,4 +176,4 @@ const AddDepartmentForm: React.FC<Props> = ({ data, dependents }) => {
   );
 };
 
-export default AddDepartmentForm;
+export default AddUserForm;
