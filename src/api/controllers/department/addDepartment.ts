@@ -6,7 +6,6 @@ export const addDepartment = async ({
   email,
   phone,
   description,
-  employees,
   dependent,
 }: IAddDepartment) => {
   const data: IAddDepartment = {
@@ -14,7 +13,6 @@ export const addDepartment = async ({
     email,
     ...(phone ? { phone } : {}),
     ...(description ? { description } : {}),
-    ...(employees ? { employees } : {}),
     ...(dependent ? { dependent } : {}),
   };
   try {
