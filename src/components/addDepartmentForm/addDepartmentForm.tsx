@@ -67,7 +67,7 @@ const AddDepartmentForm: React.FC<Props> = ({ data, dependents }) => {
     >
       {(props) => (
         <Form className={styles.form}>
-          <legend className={styles.formLegend}>Додати нового адресата</legend>
+          <legend className={styles.formLegend}>{data?"Редагування відділу":"Додати нового відділу"}</legend>
           <label className={styles.formLabel} htmlFor="name">
             Назва
             <Field
@@ -138,60 +138,23 @@ const AddDepartmentForm: React.FC<Props> = ({ data, dependents }) => {
             <ErrorMessage name="description" component="div" />
           </label>
 
-          {/* <FieldArray
-            name="underAddressee"
-            render={(arrayHelpers) => (
-              <div>
-                <p className={styles.formArrayTitle}>Отримувачі</p>
-                <ul className={styles.formArrayList}>
-                  {props.values.underAddressee.map((friend, index) => (
-                    <li key={index} className={styles.formArrayItem}>
-                      <label
-                        className={styles.formLabel}
-                        htmlFor={`underAddressee[${index}].name`}
-                      >
-                        Назва
-                        <Field
-                          type="text"
-                          id={`underAddressee[${index}].name`}
-                          name={`underAddressee[${index}].name`}
-                          className={styles.formInput}
-                        />
-                      </label>
-                      <label
-                        className={styles.formLabel}
-                        htmlFor={`underAddressee[${index}].peopleName`}
-                      >
-                        ПІБ
-                        <Field
-                          type="text"
-                          id={`underAddressee[${index}].peopleName`}
-                          name={`underAddressee[${index}].peopleName`}
-                          className={styles.formInput}
-                        />
-                      </label>
-                      <button
-                        type="button"
-                        className={styles.formArrayItemBtn}
-                        onClick={() => arrayHelpers.remove(index)}
-                      >
-                        -
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  type="button"
-                  className={styles.formBtn}
-                  onClick={() =>
-                    arrayHelpers.push({ name: "", peopleName: "" })
-                  }
-                >
-                  +
-                </button>
-              </div>
-            )}
-          /> */}
+          {data && (
+            <>
+              <p className={styles.formLabel}>Працівники </p>
+              <ul>
+                {data.employees.map((employee) => (
+                  <li key={employee._id}>
+                    ПІБ:
+                    {" " + employee.name}
+                    {" " + employee.surname + " "}
+                    {employee.lastName && employee.lastName + " "}
+                    Посада:
+                    {employee.jobPosition ? " " + employee.jobPosition : " -"}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
 
           <button type="submit" className={styles.formBtn}>
             {data ? "Зберегти" : "Додати"}
