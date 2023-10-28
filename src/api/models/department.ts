@@ -2,7 +2,7 @@ import { prop, getModelForClass, type Ref } from "@typegoose/typegoose";
 import { Types } from "mongoose";
 import { string } from "yup";
 
-class Department {
+export class Department {
   @prop({ required: true, unique: true })
   public name!: string;
 
@@ -14,9 +14,6 @@ class Department {
 
   @prop({ required: false, default: "" })
   public description?: string;
-
-  @prop({ type: () => string, default: [], required: false })
-  public employees?: string[];
 
   @prop({ ref: Department })
   public dependent?: Ref<Department>;
