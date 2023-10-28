@@ -53,7 +53,7 @@ const Departments: FC<PageProps> = async ({ searchParams }) => {
       >
         {id && (
           <Overlay>
-            <div className="max-h-[70%] max-w-[50%] translate-x-1/2 translate-y-1/2 overflow-hidden">
+            <div className="relative min-w-[50%] max-h-[70%] max-w-[70%] overflow-auto">
               <Link
                 className="absolute right-2 top-2 px-3 py-2 mt-auto text-white text-button-M bg-primary60 border-2 border-solid border-primary60 hover:text-primary60 hover:bg-white focus:text-primary60 focus:bg-white"
                 href={{
