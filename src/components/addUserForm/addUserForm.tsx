@@ -17,9 +17,9 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
     surname: "",
     lastName: "",
     jobPosition: "",
-    age: 0,
     email: "",
     phone: "",
+    birthday: "",
     department: undefined,
     ...data,
   };
@@ -35,6 +35,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
     description: Yup.string(),
     employees: Yup.array().of(Yup.string()),
     dependent: Yup.string(),
+    birthday: Yup.date(),
   });
 
   const handleSubmit = (
@@ -71,7 +72,9 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
     >
       {(props) => (
         <Form className={styles.form}>
-          <legend className={styles.formLegend}>{data?"Редагування користувача":"Додати нового Користувача"}</legend>
+          <legend className={styles.formLegend}>
+            {data ? "Редагування користувача" : "Додати нового Користувача"}
+          </legend>
           <label className={styles.formLabel} htmlFor="name">
             Імя
             <Field
@@ -106,6 +109,17 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
               className={styles.formInput}
             />
             <ErrorMessage name="lastName" component="div" />
+          </label>
+
+          <label className={styles.formLabel} htmlFor="name">
+            Дата народження
+            <Field
+              type="date"
+              id="birthday"
+              name="birthday"
+              className={styles.formInput}
+            />
+            <ErrorMessage name="birthday" component="div" />
           </label>
 
           <label className={styles.formLabel} htmlFor="email">
