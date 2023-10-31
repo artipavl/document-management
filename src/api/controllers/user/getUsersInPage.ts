@@ -31,6 +31,8 @@ export const getUsersInPage = async ({
           department: 1,
           jobPosition: 1,
           birthday: 1,
+          startWork: 1,
+          finishWork: 1,
         },
       },
     ];
@@ -82,7 +84,7 @@ export const getUsersInPage = async ({
         ...(user.department ? { department: user.department.toString() } : {}),
       };
     });
-    
+
     return { users: usersAsString, total };
   } catch (error) {
     console.log(error);

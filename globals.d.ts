@@ -84,6 +84,8 @@ interface IAddUser {
   jobPosition?: string;
   department?: string;
   birthday?: string;
+  startWork?: string;
+  finishWork?: string;
 }
 
 interface IUser {
@@ -96,4 +98,6 @@ interface IUser {
   jobPosition?: string;
   department?: string;
   birthday?: string;
+  startWork?: string;
+  finishWork?: string;
 }

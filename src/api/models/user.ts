@@ -32,6 +32,12 @@ class User {
   @prop()
   public birthday?: string;
 
+  @prop()
+  public startWork?: string;
+
+  @prop()
+  public finishWork?: string;
+
   @prop({ ref: () => Department })
   public department?: Ref<Department>;
 }

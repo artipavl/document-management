@@ -20,6 +20,8 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
     email: "",
     phone: "",
     birthday: "",
+    startWork: "",
+    finishWork: "",
     department: undefined,
     ...data,
   };
@@ -36,6 +38,8 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
     employees: Yup.array().of(Yup.string()),
     dependent: Yup.string(),
     birthday: Yup.date(),
+    startWork: Yup.date(),
+    finishWork: Yup.date(),
   });
 
   const handleSubmit = (
@@ -120,6 +124,26 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
               className={styles.formInput}
             />
             <ErrorMessage name="birthday" component="div" />
+          </label>
+          <label className={styles.formLabel} htmlFor="name">
+            Почав працювати
+            <Field
+              type="date"
+              id="startWork"
+              name="startWork"
+              className={styles.formInput}
+            />
+            <ErrorMessage name="startWork" component="div" />
+          </label>
+          <label className={styles.formLabel} htmlFor="name">
+            Звільнення
+            <Field
+              type="date"
+              id="finishWork"
+              name="finishWork"
+              className={styles.formInput}
+            />
+            <ErrorMessage name="finishWork" component="div" />
           </label>
 
           <label className={styles.formLabel} htmlFor="email">

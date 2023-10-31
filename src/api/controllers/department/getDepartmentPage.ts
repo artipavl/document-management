@@ -75,6 +75,8 @@ export const getDepartmentInPage = async ({
             jobPosition: 1,
             department: 1,
             birthday: 1,
+            startWork: 1,
+            finishWork: 1,
           },
         },
       },

@@ -13,6 +13,8 @@ export const addUser = async ({
   jobPosition,
   department,
   birthday,
+  startWork,
+  finishWork,
 }: IAddUser) => {
   const data: IAddUser = {
     name,
@@ -23,6 +25,8 @@ export const addUser = async ({
     ...(jobPosition ? { jobPosition } : {}),
     ...(department ? { department } : {}),
     ...(birthday ? { birthday } : {}),
+    ...(startWork ? { startWork } : {}),
+    ...(finishWork ? { finishWork } : {}),
   };
   try {
     console.log(data);
