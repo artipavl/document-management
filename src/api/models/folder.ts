@@ -1,7 +1,7 @@
 import { prop, getModelForClass } from "@typegoose/typegoose";
 import { Mongoose, Schema, model, models } from "mongoose";
 
-class Folder {
+export class Folder {
   @prop({ required: true })
   public name!: string;
 
