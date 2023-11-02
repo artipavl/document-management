@@ -1,7 +1,7 @@
 import { prop, getModelForClass, type Ref } from "@typegoose/typegoose";
 import { Department } from "./department";
 
-class User {
+export class User {
   @prop({ required: true })
   public name!: string;
 
