@@ -26,11 +26,13 @@ export const getUsersInPage = async ({
         $project: {
           name: 1,
           surname: 1,
-          age: 1,
           email: 1,
           phone: 1,
           department: 1,
-          jobPosition: 1
+          jobPosition: 1,
+          birthday: 1,
+          startWork: 1,
+          finishWork: 1,
         },
       },
     ];
@@ -82,7 +84,7 @@ export const getUsersInPage = async ({
         ...(user.department ? { department: user.department.toString() } : {}),
       };
     });
-    
+
     return { users: usersAsString, total };
   } catch (error) {
     console.log(error);

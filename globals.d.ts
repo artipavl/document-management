@@ -79,11 +79,13 @@ interface IAddUser {
   name: string;
   surname: string;
   lastName?: string;
-  age: number;
   email: string;
   phone?: string;
   jobPosition?: string;
   department?: string;
+  birthday?: string;
+  startWork?: string;
+  finishWork?: string;
 }
 
 interface IUser {
@@ -91,9 +93,11 @@ interface IUser {
   name: string;
   surname: string;
   lastName?: string;
-  age: number;
   email: string;
   phone?: string;
   jobPosition?: string;
   department?: string;
+  birthday?: string;
+  startWork?: string;
+  finishWork?: string;
 }

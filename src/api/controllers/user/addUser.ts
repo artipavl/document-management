@@ -8,21 +8,25 @@ export const addUser = async ({
   name,
   email,
   surname,
-  age,
   phone,
   lastName,
   jobPosition,
   department,
+  birthday,
+  startWork,
+  finishWork,
 }: IAddUser) => {
   const data: IAddUser = {
     name,
     email,
     surname,
-    age,
     ...(phone ? { phone } : {}),
     ...(lastName ? { lastName } : {}),
     ...(jobPosition ? { jobPosition } : {}),
     ...(department ? { department } : {}),
+    ...(birthday ? { birthday } : {}),
+    ...(startWork ? { startWork } : {}),
+    ...(finishWork ? { finishWork } : {}),
   };
   try {
     console.log(data);
@@ -32,13 +36,11 @@ export const addUser = async ({
 
     const verificationCode = v4();
     const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-    const user = await UserModel.create({
+    await UserModel.create({
       ...data,
       verificationCode,
       password: hashPassword,
     });
-    console.log("user");
-    console.log(user);
   } catch (error) {
     console.log(error);
   }

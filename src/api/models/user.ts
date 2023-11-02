@@ -11,9 +11,6 @@ class User {
   @prop()
   public lastName?: string;
 
-  @prop({ required: true })
-  public age!: number;
-
   @prop({ required: true, unique: true })
   public email!: string;
 
@@ -31,6 +28,15 @@ class User {
 
   @prop()
   public jobPosition?: string;
+
+  @prop()
+  public birthday?: string;
+
+  @prop()
+  public startWork?: string;
+
+  @prop()
+  public finishWork?: string;
 
   @prop({ ref: () => Department })
   public department?: Ref<Department>;
