@@ -10,7 +10,6 @@ type FoldersNavProps = {
 };
 
 const FoldersNav: FC<FoldersNavProps> = ({ folders, current = "" }) => {
-  console.log(current);
   return (
     <ul className={styles.list}>
       <li>

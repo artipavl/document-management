@@ -8,7 +8,7 @@ class UnderAddressee {
   public peopleName!: string;
 }
 
-class Addressee {
+export class Addressee {
   @prop({ required: true, unique: true })
   public name!: string;
 

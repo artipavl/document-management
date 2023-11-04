@@ -21,13 +21,13 @@ type PipelineStage =
       $limit: number;
     }
   | { $set: object }
-  | { $project: object };
+  | { $project: object }
+  | { $match: object };
 
 interface IFolder {
-  _id: Types.ObjectId;
+  _id: string;
   name: string;
   href: string;
-  __v: number;
 }
 
 interface IUnderAddressee {
@@ -100,4 +100,37 @@ interface IUser {
   birthday?: string;
   startWork?: string;
   finishWork?: string;
+}
+
+interface IAddDocument {
+  number: string;
+  date: string;
+  title: string;
+  description?: string;
+  addressee?: string;
+  addresseeSignature?: string;
+  documentDate?: string;
+  documentNumber?: string;
+  remark: string;
+  control: boolean;
+  controlFrequency?: string;
+  folder: string;
+}
+
+interface IDocument {
+  _id: string;
+  number: string;
+  date: string;
+  title: string;
+  description?: string;
+  addressee?: string;
+  addresseeSignature?: string;
+  documentDate?: string;
+  documentNumber?: string;
+  remark: string;
+  control: boolean;
+  controlFrequency?: string;
+  folder: string;
+  folderHref: string;
+  folderName: string;
 }
