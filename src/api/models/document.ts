@@ -25,7 +25,7 @@ export class Document {
   public documentDate?: string;
 
   @prop()
-  public documentnNmber?: string;
+  public documentNumber?: string;
 
   @prop()
   public documentnType?: string;
