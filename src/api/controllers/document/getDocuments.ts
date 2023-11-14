@@ -10,6 +10,7 @@ export const getDocuments = async (): Promise<IDocument[]> => {
       return {
         ...document.toJSON(),
         _id: document._id.toString(),
+        controlExecutor: document.controlExecutor?.toString(),
         folder: document.folder.toString(),
         ...(document.addressee
           ? { addressee: document.addressee.toString() }

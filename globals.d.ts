@@ -114,6 +114,7 @@ interface IAddDocument {
   remark: string;
   control: boolean;
   controlFrequency?: string;
+  controlExecutor?: string;
   folder: string;
 }
 
@@ -130,6 +131,7 @@ interface IDocument {
   remark: string;
   control: boolean;
   controlFrequency?: string;
+  controlExecutor?: string;
   folder: string;
   folderHref: string;
   folderName: string;

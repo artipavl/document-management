@@ -79,7 +79,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
           <legend className={styles.formLegend}>
             {data ? "Редагування користувача" : "Додати нового Користувача"}
           </legend>
-          <label className={styles.formLabel} htmlFor="name">
+          <label className={styles.formLabel}>
             Імя
             <Field
               type="text"
@@ -91,7 +91,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
             />
             <ErrorMessage name="name" component="div" />
           </label>
-          <label className={styles.formLabel} htmlFor="name">
+          <label className={styles.formLabel}>
             Прізвище
             <Field
               type="text"
@@ -103,7 +103,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
             />
             <ErrorMessage name="surname" component="div" />
           </label>
-          <label className={styles.formLabel} htmlFor="name">
+          <label className={styles.formLabel}>
             По батькові
             <Field
               type="text"
@@ -115,7 +115,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
             <ErrorMessage name="lastName" component="div" />
           </label>
 
-          <label className={styles.formLabel} htmlFor="name">
+          <label className={styles.formLabel}>
             Дата народження
             <Field
               type="date"
@@ -125,7 +125,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
             />
             <ErrorMessage name="birthday" component="div" />
           </label>
-          <label className={styles.formLabel} htmlFor="name">
+          <label className={styles.formLabel}>
             Почав працювати
             <Field
               type="date"
@@ -135,7 +135,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
             />
             <ErrorMessage name="startWork" component="div" />
           </label>
-          <label className={styles.formLabel} htmlFor="name">
+          <label className={styles.formLabel}>
             Звільнення
             <Field
               type="date"
@@ -146,7 +146,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
             <ErrorMessage name="finishWork" component="div" />
           </label>
 
-          <label className={styles.formLabel} htmlFor="email">
+          <label className={styles.formLabel}>
             Пошта
             <Field
               type="email"
@@ -158,7 +158,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
             />
             <ErrorMessage name="email" component="div" />
           </label>
-          <label className={styles.formLabel} htmlFor="phone">
+          <label className={styles.formLabel}>
             Телефон
             <Field
               type="tel"
@@ -170,7 +170,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
             <ErrorMessage name="phone" component="div" />
           </label>
 
-          <label className={styles.formLabel} htmlFor="name">
+          <label className={styles.formLabel}>
             Посада
             <Field
               type="text"
@@ -182,7 +182,7 @@ const AddUserForm: React.FC<Props> = ({ data, departments }) => {
             <ErrorMessage name="jobPosition" component="div" />
           </label>
 
-          <label className={styles.formLabel} htmlFor="phone">
+          <label className={styles.formLabel}>
             Працює у
             <Field
               as="select"
