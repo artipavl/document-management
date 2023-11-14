@@ -1,6 +1,7 @@
 import { prop, getModelForClass, type Ref } from "@typegoose/typegoose";
 import { Addressee } from "./addressee";
 import { Folder } from "./folder";
+import { User } from "./user";
 
 export class Document {
   @prop({ required: true })
@@ -38,6 +39,9 @@ export class Document {
 
   @prop()
   public controlFrequency?: string;
+
+  @prop({required: false, ref: User })
+  public controlExecutor?: Ref<User>;
 
   @prop({ ref: Folder })
   public folder!: Ref<Folder>;

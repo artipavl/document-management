@@ -1,5 +1,6 @@
 import { getDocomentsInPage } from "@/api/controllers/document/getDocomentsInPage";
 import { getFolders } from "@/api/controllers/folder/getFolders";
+import { getUsers } from "@/api/controllers/user/getUsers";
 import AddDocumentForm from "@/components/addDocumentForm/addDocumentForm";
 import DataTable from "@/components/dataTable/dataTable";
 import FoldersNav from "@/components/foldersNav/foldersNav";
@@ -36,11 +37,12 @@ const Users: FC<PageProps> = async ({ params, searchParams }) => {
   });
 
   const folders = await getFolders();
+  const users = await getUsers();
   return (
     <div>
       <FoldersNav folders={folders} current={params.slug} />
       <Title title={"Папка #" + params.slug} />
-      <AddDocumentForm folders={folders} />
+      <AddDocumentForm folders={folders} users={users} />
       <DataTable
         data={documents}
         keys={["number", "title", "date"]}
@@ -74,6 +76,7 @@ const Users: FC<PageProps> = async ({ params, searchParams }) => {
               </Link>
               <AddDocumentForm
                 folders={folders}
+                users={users}
                 data={documents.find((item) => item._id.toString() === id)}
               />
             </div>

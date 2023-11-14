@@ -22,5 +22,6 @@ export const getUsers = async () => {
     return usersAsString;
   } catch (error) {
     console.log(error);
+    return [];
   }
 };

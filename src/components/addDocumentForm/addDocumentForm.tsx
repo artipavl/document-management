@@ -9,9 +9,11 @@ import styles from "./addDocumentForm.module.scss";
 interface Props {
   data?: IDocument;
   folders: IFolder[];
+  users: IUser[];
 }
 
-const AddDocumentForm: React.FC<Props> = ({ data, folders }) => {
+const AddDocumentForm: React.FC<Props> = ({ data, folders, users }) => {
+  console.log(data);
   const initialValues: IAddDocument = {
     number: "",
     date: "",
@@ -24,6 +26,7 @@ const AddDocumentForm: React.FC<Props> = ({ data, folders }) => {
     remark: "",
     control: false,
     controlFrequency: "",
+    controlExecutor: "",
     folder: "",
     ...data,
   };
@@ -41,6 +44,7 @@ const AddDocumentForm: React.FC<Props> = ({ data, folders }) => {
     documentDate: Yup.string(),
     documentNumber: Yup.string(),
     controlFrequency: Yup.string(),
+    controlExecutor: Yup.string(),
   });
 
   const handleSubmit = (
@@ -205,6 +209,26 @@ const AddDocumentForm: React.FC<Props> = ({ data, folders }) => {
               className={styles.formInput}
             />
             <ErrorMessage name="controlFrequency" component="div" />
+          </label>
+
+          <label className={styles.formLabel}>
+            Відповідальний
+            <Field
+              as="select"
+              id="controlExecutor"
+              name="controlExecutor"
+              className={styles.formInput}
+            >
+              <option key={0} value={undefined}>
+                {}
+              </option>
+              {users.map((user) => (
+                <option key={user._id} value={user._id}>
+                  {`${user.name} ${user.surname}`}
+                </option>
+              ))}
+            </Field>
+            <ErrorMessage name="controlExecutor" component="div" />
           </label>
 
           <button type="submit" className={styles.formBtn}>

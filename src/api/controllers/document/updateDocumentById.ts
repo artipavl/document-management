@@ -1,31 +1,19 @@
 import DocumentModel from "@/api/models/document";
 import connectDB from "../../connect-db";
+import removeUndefinedValues from "@/helpers/removeUndefinedValues";
 
 //перевірити на передачу undef... значень
 export const updateDocumentById = async (data: IAddDocument, id: string) => {
-  const filterDtata = {};
+  console.log("lfnf " + data);
+  console.log(removeUndefinedValues(data));
   try {
     await connectDB();
-    await DocumentModel.findByIdAndUpdate(id, removeUndefinedValues(data));
+    const r = await DocumentModel.findByIdAndUpdate(
+      id,
+      removeUndefinedValues(data)
+    );
+    console.log(r);
   } catch (error) {
     console.log(error);
   }
 };
-
-type ObjectWithUndefined = {
-  [key: string]: any | undefined;
-};
-
-function removeUndefinedValues<T extends ObjectWithUndefined>(
-  obj: T
-): Partial<T> {
-  const result: Partial<T> = {};
-
-  for (const key in obj) {
-    if (obj[key]) {
-      result[key] = obj[key];
-    }
-  }
-
-  return result;
-}

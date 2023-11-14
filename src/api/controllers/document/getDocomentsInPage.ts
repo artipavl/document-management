@@ -99,6 +99,7 @@ export const getDocomentsInPage = async ({
           remark: 1,
           control: 1,
           controlFrequency: 1,
+          controlExecutor: 1,
           folder: 1,
           folderHref: 1,
           folderName: 1,
@@ -121,17 +122,19 @@ export const getDocomentsInPage = async ({
       ]);
       total = result ? result.total : 0;
     }
-
+    console.log(documents);
     const documentsAsString: IDocument[] = documents.map((document) => {
       return {
         ...document,
         _id: document._id.toString(),
+        controlExecutor: document.controlExecutor?.toString(),
         folder: document.folder.toString(),
         ...(document.addressee
           ? { addressee: document.addressee.toString() }
           : {}),
       };
     });
+    console.log(documentsAsString);
     return { documents: documentsAsString, total };
   } catch (error) {
     console.log(error);
