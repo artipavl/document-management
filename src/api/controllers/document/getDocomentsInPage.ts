@@ -134,7 +134,6 @@ export const getDocomentsInPage = async ({
           : {}),
       };
     });
-    console.log(documentsAsString);
     return { documents: documentsAsString, total };
   } catch (error) {
     console.log(error);

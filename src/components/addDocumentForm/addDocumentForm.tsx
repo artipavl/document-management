@@ -13,7 +13,6 @@ interface Props {
 }
 
 const AddDocumentForm: React.FC<Props> = ({ data, folders, users }) => {
-  console.log(data);
   const initialValues: IAddDocument = {
     number: "",
     date: "",
