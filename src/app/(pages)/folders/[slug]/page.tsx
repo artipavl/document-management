@@ -1,3 +1,4 @@
+import { getAddressees } from "@/api/controllers/addressee/getAddressees";
 import { getDocomentsInPage } from "@/api/controllers/document/getDocomentsInPage";
 import { getFolders } from "@/api/controllers/folder/getFolders";
 import { getUsers } from "@/api/controllers/user/getUsers";
@@ -38,11 +39,16 @@ const Users: FC<PageProps> = async ({ params, searchParams }) => {
 
   const folders = await getFolders();
   const users = await getUsers();
+  const addressees = await getAddressees();
   return (
     <div>
       <FoldersNav folders={folders} current={params.slug} />
       <Title title={"Папка #" + params.slug} />
-      <AddDocumentForm folders={folders} users={users} />
+      <AddDocumentForm
+        folders={folders}
+        users={users}
+        addressees={addressees}
+      />
       <DataTable
         data={documents}
         keys={["number", "title", "date"]}
@@ -78,6 +84,7 @@ const Users: FC<PageProps> = async ({ params, searchParams }) => {
                 folders={folders}
                 users={users}
                 data={documents.find((item) => item._id.toString() === id)}
+                addressees={addressees}
               />
             </div>
           </Overlay>
