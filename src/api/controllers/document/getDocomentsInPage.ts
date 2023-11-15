@@ -103,6 +103,20 @@ export const getDocomentsInPage = async ({
           folder: 1,
           folderHref: 1,
           folderName: 1,
+          resolutions: {
+            text: 1,
+            date: 1,
+            signature: 1,
+          },
+          letters: {
+            number: 1,
+            text: 1,
+            date: 1,
+            dateShipment: 1,
+            signature: 1,
+            addressee: 1,
+            addresseeSignature: 1,
+          },
         },
       },
     ];
@@ -122,7 +136,6 @@ export const getDocomentsInPage = async ({
       ]);
       total = result ? result.total : 0;
     }
-    console.log(documents);
     const documentsAsString: IDocument[] = documents.map((document) => {
       return {
         ...document,
@@ -132,6 +145,20 @@ export const getDocomentsInPage = async ({
         ...(document.addressee
           ? { addressee: document.addressee.toString() }
           : {}),
+        resolutions: document.resolutions.map((resolution) => {
+          return {
+            ...resolution,
+            signature: resolution.signature?.toString(),
+          };
+        }),
+        letters: document.letters.map((letter) => {
+          return {
+            ...letter,
+            signature: letter.signature?.toString(),
+            addressee: letter.addressee?.toString(),
+            addresseeSignature: letter.addresseeSignature?.toString(),
+          };
+        }),
       };
     });
     return { documents: documentsAsString, total };
