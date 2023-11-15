@@ -1,6 +1,18 @@
 .form {
   @apply flex gap-4 p-4 flex-col bg-white border border-solid border-coolGray30;
 }
+.formContainer {
+  @apply flex gap-4 flex-col;
+}
+.formNav {
+  @apply flex gap-4;
+}
+.formNavLinkActive {
+  @apply bg-coolGray10 ;
+}
+.formNavLink {
+  @apply p-2 ;
+}
 
 .formLegend {
   @apply text-coolGray90 text-heading-6 mb-2;
