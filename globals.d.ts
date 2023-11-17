@@ -30,13 +30,18 @@ interface IFolder {
   href: string;
 }
 
+interface IAddUnderAddressee {
+  name: string;
+  peopleName: string;
+}
 interface IUnderAddressee {
+  _id: string;
   name: string;
   peopleName: string;
 }
 
 interface IAddressee {
-  _id: Types.ObjectId;
+  _id: string;
   name: string;
   email: string;
   phone?: string;
@@ -48,7 +53,7 @@ interface IAddAddressee {
   name: string;
   email: string;
   phone?: string;
-  underAddressee: IUnderAddressee[];
+  underAddressee: IAddUnderAddressee[];
 }
 
 interface IAddFolder {
@@ -115,7 +120,13 @@ interface IAddDocument {
   control: boolean;
   controlFrequency?: string;
   controlExecutor?: string;
+  resolutions: IResolution[];
+  letters: ILetter[];
   folder: string;
+  removalControlText?: string;
+  removalControlDate?: string;
+  removalControlSignature?: string;
+  removalControlType?: string;
 }
 
 interface IDocument {
@@ -135,4 +146,26 @@ interface IDocument {
   folder: string;
   folderHref: string;
   folderName: string;
+  resolutions: IResolution[];
+  letters: ILetter[];
+  removalControlText?: string;
+  removalControlDate?: string;
+  removalControlSignature?: string;
+  removalControlType?: string;
+}
+
+interface IResolution {
+  text?: string;
+  signature?: string;
+  date?: string;
+}
+
+interface ILetter {
+  number?: string;
+  text?: string;
+  signature?: string;
+  date?: string;
+  addressee?: string;
+  addresseeSignature?: string;
+  dateShipment?: string;
 }

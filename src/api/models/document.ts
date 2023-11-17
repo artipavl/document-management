@@ -40,11 +40,61 @@ export class Document {
   @prop()
   public controlFrequency?: string;
 
-  @prop({required: false, ref: User })
+  @prop({ required: false, ref: User })
   public controlExecutor?: Ref<User>;
 
   @prop({ ref: Folder })
   public folder!: Ref<Folder>;
+
+  @prop({ type: () => Resolution, default: [] })
+  public resolutions!: Resolution[];
+
+  @prop({ type: () => Letter, default: [] })
+  public letters!: Letter[];
+
+  @prop()
+  public removalControlText?: string;
+  @prop()
+  public removalControlDate?: string;
+  @prop()
+  public removalControlType?: string;
+
+  @prop({ required: false, ref: User })
+  public removalControlSignature?: Ref<User>;
+}
+
+class Resolution {
+  @prop({})
+  public text?: string;
+
+  @prop({ ref: User })
+  public signature?: Ref<User>;
+
+  @prop({})
+  public date?: string;
+}
+
+class Letter {
+  @prop({})
+  public text?: string;
+
+  @prop({})
+  public number?: string;
+
+  @prop({ ref: User })
+  public signature?: Ref<User>;
+
+  @prop({})
+  public date?: string;
+
+  @prop({ ref: Addressee })
+  public addressee?: Ref<Addressee>;
+
+  @prop({})
+  public dateShipment?: string;
+
+  @prop({ ref: Addressee.name })
+  public addresseeSignature?: Ref<string>;
 }
 
 const DocumentModel = getModelForClass(Document);
