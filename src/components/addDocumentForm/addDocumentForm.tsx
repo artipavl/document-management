@@ -35,6 +35,10 @@ const AddDocumentForm: React.FC<Props> = ({
     controlFrequency: "",
     controlExecutor: "",
     folder: "",
+    removalControlText: "",
+    removalControlDate: "",
+    removalControlSignature: "",
+    removalControlType: "",
     resolutions: [],
     letters: [],
     ...data,
@@ -56,6 +60,10 @@ const AddDocumentForm: React.FC<Props> = ({
     controlExecutor: Yup.string(),
     resolutions: Yup.array(),
     letters: Yup.array(),
+    removalControlText: Yup.string(),
+    removalControlDate: Yup.string(),
+    removalControlSignature: Yup.string(),
+    removalControlType: Yup.string(),
   });
 
   const handleSubmit = (
@@ -367,6 +375,61 @@ const AddDocumentForm: React.FC<Props> = ({
                   </div>
                 )}
               />
+              <p className={styles.formLabel}>Контроль:</p>
+              <div className={styles.formArrayItem}>
+                <label className={styles.formLabel}>
+                  Текст
+                  <Field
+                    type="text"
+                    id="removalControlText"
+                    name="removalControlText"
+                    className={styles.formInput}
+                  />
+                </label>
+
+                <label className={styles.formLabel}>
+                  Підписав
+                  <Field
+                    as="select"
+                    id="removalControlSignature"
+                    name="removalControlSignature"
+                    className={styles.formInput}
+                  >
+                    <option key={0} value={undefined}>
+                      {}
+                    </option>
+                    {users.map((user) => (
+                      <option key={user._id} value={user._id}>
+                        {`${user.name} ${user.surname}`}
+                      </option>
+                    ))}
+                  </Field>
+                  <ErrorMessage
+                    name="removalControlSignature"
+                    component="div"
+                  />
+                </label>
+
+                <label className={styles.formLabel}>
+                  Дата
+                  <Field
+                    type="date"
+                    id="removalControlDate"
+                    name="removalControlDate"
+                    className={styles.formInput}
+                  />
+                  <ErrorMessage name="removalControlDate" component="div" />
+                </label>
+              </div>
+              <label className={styles.formLabel}>
+                Тип
+                <Field
+                  type="text"
+                  id="removalControlType"
+                  name="removalControlType"
+                  className={styles.formInput}
+                />
+              </label>
             </div>
           )}
           {page === 2 && (

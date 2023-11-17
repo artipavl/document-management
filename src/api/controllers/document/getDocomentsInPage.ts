@@ -103,6 +103,10 @@ export const getDocomentsInPage = async ({
           folder: 1,
           folderHref: 1,
           folderName: 1,
+          removalControlText: 1,
+          removalControlDate: 1,
+          removalControlSignature: 1,
+          removalControlType: 1,
           resolutions: {
             text: 1,
             date: 1,
@@ -141,6 +145,7 @@ export const getDocomentsInPage = async ({
         ...document,
         _id: document._id.toString(),
         controlExecutor: document.controlExecutor?.toString(),
+        removalControlSignature: document.removalControlSignature?.toString(),
         folder: document.folder.toString(),
         ...(document.addressee
           ? { addressee: document.addressee.toString() }

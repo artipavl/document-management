@@ -51,6 +51,16 @@ export class Document {
 
   @prop({ type: () => Letter, default: [] })
   public letters!: Letter[];
+
+  @prop()
+  public removalControlText?: string;
+  @prop()
+  public removalControlDate?: string;
+  @prop()
+  public removalControlType?: string;
+
+  @prop({ required: false, ref: User })
+  public removalControlSignature?: Ref<User>;
 }
 
 class Resolution {

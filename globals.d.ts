@@ -123,6 +123,10 @@ interface IAddDocument {
   resolutions: IResolution[];
   letters: ILetter[];
   folder: string;
+  removalControlText?: string;
+  removalControlDate?: string;
+  removalControlSignature?: string;
+  removalControlType?: string;
 }
 
 interface IDocument {
@@ -144,6 +148,10 @@ interface IDocument {
   folderName: string;
   resolutions: IResolution[];
   letters: ILetter[];
+  removalControlText?: string;
+  removalControlDate?: string;
+  removalControlSignature?: string;
+  removalControlType?: string;
 }
 
 interface IResolution {
