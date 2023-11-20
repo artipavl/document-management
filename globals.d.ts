@@ -119,7 +119,9 @@ interface IAddDocument {
   remark: string;
   control: boolean;
   controlFrequency?: string;
+  controlPerson?: string;
   controlExecutor?: string;
+  controlDate?: string;
   resolutions: IResolution[];
   letters: ILetter[];
   folder: string;
@@ -142,7 +144,9 @@ interface IDocument {
   remark: string;
   control: boolean;
   controlFrequency?: string;
+  controlPerson?: string;
   controlExecutor?: string;
+  controlDate?: string;
   folder: string;
   folderHref: string;
   folderName: string;

@@ -41,7 +41,13 @@ export class Document {
   public controlFrequency?: string;
 
   @prop({ required: false, ref: User })
+  public controlPerson?: Ref<User>;
+
+  @prop({ required: false, ref: User })
   public controlExecutor?: Ref<User>;
+
+  @prop()
+  public controlDate?: string;
 
   @prop({ ref: Folder })
   public folder!: Ref<Folder>;

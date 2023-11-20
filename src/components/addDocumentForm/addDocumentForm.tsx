@@ -33,7 +33,9 @@ const AddDocumentForm: React.FC<Props> = ({
     remark: "",
     control: false,
     controlFrequency: "",
+    controlPerson: "",
     controlExecutor: "",
+    controlDate: "",
     folder: "",
     removalControlText: "",
     removalControlDate: "",
@@ -57,7 +59,9 @@ const AddDocumentForm: React.FC<Props> = ({
     documentDate: Yup.string(),
     documentNumber: Yup.string(),
     controlFrequency: Yup.string(),
+    controlPerson: Yup.string(),
     controlExecutor: Yup.string(),
+    controlDate: Yup.string(),
     resolutions: Yup.array(),
     letters: Yup.array(),
     removalControlText: Yup.string(),
@@ -261,37 +265,6 @@ const AddDocumentForm: React.FC<Props> = ({
                 />
                 <ErrorMessage name="control" component="div" />
               </label>
-
-              <label className={styles.formLabel} htmlFor="name">
-                Періодичність контролю
-                <Field
-                  type="text"
-                  id="controlFrequency"
-                  name="controlFrequency"
-                  className={styles.formInput}
-                />
-                <ErrorMessage name="controlFrequency" component="div" />
-              </label>
-
-              <label className={styles.formLabel}>
-                Відповідальний
-                <Field
-                  as="select"
-                  id="controlExecutor"
-                  name="controlExecutor"
-                  className={styles.formInput}
-                >
-                  <option key={0} value={undefined}>
-                    {}
-                  </option>
-                  {users.map((user) => (
-                    <option key={user._id} value={user._id}>
-                      {`${user.name} ${user.surname}`}
-                    </option>
-                  ))}
-                </Field>
-                <ErrorMessage name="controlExecutor" component="div" />
-              </label>
             </div>
           )}
           {page === 1 && (
@@ -376,6 +349,70 @@ const AddDocumentForm: React.FC<Props> = ({
                 )}
               />
               <p className={styles.formLabel}>Контроль:</p>
+
+              <div className={styles.formArrayItem}>
+                <label className={styles.formLabel} htmlFor="name">
+                  Дата контролю
+                  <Field
+                    type="date"
+                    id="controlDate"
+                    name="controlDate"
+                    className={styles.formInput}
+                  />
+                  <ErrorMessage name="controlDate" component="div" />
+                </label>
+
+                <label className={styles.formLabel} htmlFor="name">
+                  Періодичність контролю
+                  <Field
+                    type="text"
+                    id="controlFrequency"
+                    name="controlFrequency"
+                    className={styles.formInput}
+                  />
+                  <ErrorMessage name="controlFrequency" component="div" />
+                </label>
+              </div>
+              <div className={styles.formArrayItem}>
+                <label className={styles.formLabel}>
+                  Контролює
+                  <Field
+                    as="select"
+                    id="controlPerson"
+                    name="controlPerson"
+                    className={styles.formInput}
+                  >
+                    <option key={0} value={undefined}>
+                      {}
+                    </option>
+                    {users.map((user) => (
+                      <option key={user._id} value={user._id}>
+                        {`${user.name} ${user.surname}`}
+                      </option>
+                    ))}
+                  </Field>
+                  <ErrorMessage name="controlExecutor" component="div" />
+                </label>
+                <label className={styles.formLabel}>
+                  Виконує
+                  <Field
+                    as="select"
+                    id="controlExecutor"
+                    name="controlExecutor"
+                    className={styles.formInput}
+                  >
+                    <option key={0} value={undefined}>
+                      {}
+                    </option>
+                    {users.map((user) => (
+                      <option key={user._id} value={user._id}>
+                        {`${user.name} ${user.surname}`}
+                      </option>
+                    ))}
+                  </Field>
+                  <ErrorMessage name="controlExecutor" component="div" />
+                </label>
+              </div>
               <div className={styles.formArrayItem}>
                 <label className={styles.formLabel}>
                   Текст
