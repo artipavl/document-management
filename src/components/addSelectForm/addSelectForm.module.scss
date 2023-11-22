@@ -1,0 +1,11 @@
+.form {
+  @apply flex gap-4;
+}
+
+.formBtn {
+  @apply hover:text-red-600;
+}
+
+.formBtnIcon {
+  @apply w-6 h-6 text-current;
+}
