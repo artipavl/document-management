@@ -1,5 +1,4 @@
 import { prop, getModelForClass } from "@typegoose/typegoose";
-import { Mongoose, Schema, model, models } from "mongoose";
 
 export class Folder {
   @prop({ required: true })
@@ -10,8 +9,5 @@ export class Folder {
 }
 
 const FolderModel = getModelForClass(Folder);
-
-// const schema = new Schema({ name: String, href: String });
-// const FolderModel = models.Customer || model("Folder", schema);
 
 export default FolderModel;
