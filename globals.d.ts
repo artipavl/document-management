@@ -30,6 +30,28 @@ interface IFolder {
   href: string;
 }
 
+interface IPeriodicity {
+  _id: string;
+  name: string;
+  href: string;
+}
+
+interface IImportance {
+  _id: string;
+  name: string;
+  href: string;
+}
+
+interface IExecution {
+  _id: string;
+  name: string;
+  href: string;
+}
+
+interface IAddSelect {
+  name: string;
+}
+
 interface IAddUnderAddressee {
   name: string;
   peopleName: string;
