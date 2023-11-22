@@ -1,6 +1,6 @@
 import { prop, getModelForClass } from "@typegoose/typegoose";
 
-export class Folder {
+export class Importance {
   @prop({ required: true })
   public name!: string;
 
@@ -8,6 +8,6 @@ export class Folder {
   public href!: string;
 }
 
-const FolderModel = getModelForClass(Folder);
+const ImportanceModel = getModelForClass(Importance);
 
-export default FolderModel;
+export default ImportanceModel;
