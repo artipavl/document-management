@@ -2,6 +2,9 @@ import { prop, getModelForClass, type Ref } from "@typegoose/typegoose";
 import { Addressee } from "./addressee";
 import { Folder } from "./folder";
 import { User } from "./user";
+import { Importance } from "./importance";
+import { Periodicity } from "./periodicity";
+import { Execution } from "./execution";
 
 export class Document {
   @prop({ required: true })
@@ -37,14 +40,17 @@ export class Document {
   @prop({ required: true, default: false })
   public control!: boolean;
 
-  @prop()
-  public controlFrequency?: string;
+  @prop({ required: false, ref: Periodicity })
+  public controlFrequency?: Ref<Periodicity>;
 
   @prop({ required: false, ref: User })
   public controlPerson?: Ref<User>;
 
   @prop({ required: false, ref: User })
   public controlExecutor?: Ref<User>;
+
+  @prop({ required: false, ref: Importance })
+  public importance?: Ref<Importance>;
 
   @prop()
   public controlDate?: string;
@@ -62,8 +68,10 @@ export class Document {
   public removalControlText?: string;
   @prop()
   public removalControlDate?: string;
-  @prop()
-  public removalControlType?: string;
+
+  @prop({ required: false, ref: Execution })
+  public removalControlType?: Ref<Execution>;
+
 
   @prop({ required: false, ref: User })
   public removalControlSignature?: Ref<User>;
