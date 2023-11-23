@@ -136,6 +136,7 @@ interface IAddDocument {
   description?: string;
   addressee?: string;
   addresseeSignature?: string;
+  importance?: string;
   documentDate?: string;
   documentNumber?: string;
   remark: string;
@@ -168,6 +169,7 @@ interface IDocument {
   controlFrequency?: string;
   controlPerson?: string;
   controlExecutor?: string;
+  importance?: string;
   controlDate?: string;
   folder: string;
   folderHref: string;
