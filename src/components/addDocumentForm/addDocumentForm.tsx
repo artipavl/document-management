@@ -12,6 +12,9 @@ interface Props {
   folders: IFolder[];
   users: IUser[];
   addressees: IAddressee[];
+  execution: IExecution[];
+  importance: IImportance[];
+  periodicity: IPeriodicity[];
 }
 
 const AddDocumentForm: React.FC<Props> = ({
@@ -19,6 +22,9 @@ const AddDocumentForm: React.FC<Props> = ({
   folders,
   users,
   addressees,
+  execution,
+  importance,
+  periodicity,
 }) => {
   const [page, setPage] = useState<number>(0);
   const initialValues: IAddDocument = {
@@ -35,6 +41,7 @@ const AddDocumentForm: React.FC<Props> = ({
     controlFrequency: "",
     controlPerson: "",
     controlExecutor: "",
+    importance: "",
     controlDate: "",
     folder: "",
     removalControlText: "",
@@ -56,6 +63,7 @@ const AddDocumentForm: React.FC<Props> = ({
     description: Yup.string(),
     addressee: Yup.string(),
     addresseeSignature: Yup.string(),
+    importance: Yup.string(),
     documentDate: Yup.string(),
     documentNumber: Yup.string(),
     controlFrequency: Yup.string(),
@@ -150,7 +158,7 @@ const AddDocumentForm: React.FC<Props> = ({
           </ul>
           {page === 0 && (
             <div className={styles.formContainer}>
-              <label className={styles.formLabel} htmlFor="name">
+              <label className={styles.formLabel}>
                 Номер
                 <Field
                   type="text"
@@ -162,7 +170,7 @@ const AddDocumentForm: React.FC<Props> = ({
                 <ErrorMessage name="number" component="div" />
               </label>
 
-              <label className={styles.formLabel} htmlFor="name">
+              <label className={styles.formLabel}>
                 Дата створення
                 <Field
                   type="date"
@@ -173,7 +181,7 @@ const AddDocumentForm: React.FC<Props> = ({
                 <ErrorMessage name="date" component="div" />
               </label>
 
-              <label className={styles.formLabel} htmlFor="name">
+              <label className={styles.formLabel}>
                 Назва
                 <Field
                   type="text"
@@ -185,7 +193,7 @@ const AddDocumentForm: React.FC<Props> = ({
                 <ErrorMessage name="title" component="div" />
               </label>
 
-              <label className={styles.formLabel} htmlFor="name">
+              <label className={styles.formLabel}>
                 Ремарка
                 <Field
                   type="text"
@@ -232,7 +240,7 @@ const AddDocumentForm: React.FC<Props> = ({
                 <ErrorMessage name="description" component="div" />
               </label>
 
-              <label className={styles.formLabel} htmlFor="name">
+              <label className={styles.formLabel}>
                 Номер Документу
                 <Field
                   type="text"
@@ -244,7 +252,7 @@ const AddDocumentForm: React.FC<Props> = ({
                 <ErrorMessage name="documentNumber" component="div" />
               </label>
 
-              <label className={styles.formLabel} htmlFor="name">
+              <label className={styles.formLabel}>
                 Дата Документу
                 <Field
                   type="date"
@@ -255,7 +263,7 @@ const AddDocumentForm: React.FC<Props> = ({
                 <ErrorMessage name="documentDate" component="div" />
               </label>
 
-              <label className={styles.formLabel} htmlFor="name">
+              <label className={styles.formLabel}>
                 Контроль
                 <Field
                   type="checkbox"
@@ -264,6 +272,26 @@ const AddDocumentForm: React.FC<Props> = ({
                   className={styles.formInput}
                 />
                 <ErrorMessage name="control" component="div" />
+              </label>
+
+              <label className={styles.formLabel}>
+                Важливість
+                <Field
+                  as="select"
+                  id="importance"
+                  name="importance"
+                  className={styles.formInput}
+                >
+                  <option key={0} value={undefined}>
+                    {}
+                  </option>
+                  {importance.map((item) => (
+                    <option key={item._id} value={item._id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </Field>
+                <ErrorMessage name="importance" component="div" />
               </label>
             </div>
           )}
@@ -313,7 +341,7 @@ const AddDocumentForm: React.FC<Props> = ({
                             />
                           </label>
 
-                          <label className={styles.formLabel} htmlFor="name">
+                          <label className={styles.formLabel}>
                             Дата
                             <Field
                               type="date"
@@ -351,7 +379,7 @@ const AddDocumentForm: React.FC<Props> = ({
               <p className={styles.formLabel}>Контроль:</p>
 
               <div className={styles.formArrayItem}>
-                <label className={styles.formLabel} htmlFor="name">
+                <label className={styles.formLabel}>
                   Дата контролю
                   <Field
                     type="date"
@@ -362,14 +390,23 @@ const AddDocumentForm: React.FC<Props> = ({
                   <ErrorMessage name="controlDate" component="div" />
                 </label>
 
-                <label className={styles.formLabel} htmlFor="name">
+                <label className={styles.formLabel}>
                   Періодичність контролю
                   <Field
-                    type="text"
+                    as="select"
                     id="controlFrequency"
                     name="controlFrequency"
                     className={styles.formInput}
-                  />
+                  >
+                    <option key={0} value={undefined}>
+                      {}
+                    </option>
+                    {periodicity.map((item) => (
+                      <option key={item._id} value={item._id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </Field>
                   <ErrorMessage name="controlFrequency" component="div" />
                 </label>
               </div>
@@ -461,11 +498,21 @@ const AddDocumentForm: React.FC<Props> = ({
               <label className={styles.formLabel}>
                 Тип
                 <Field
-                  type="text"
+                  as="select"
                   id="removalControlType"
                   name="removalControlType"
                   className={styles.formInput}
-                />
+                >
+                  <option key={0} value={undefined}>
+                    {}
+                  </option>
+                  {execution.map((item) => (
+                    <option key={item._id} value={item._id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </Field>
+                <ErrorMessage name="removalControlType" component="div" />
               </label>
             </div>
           )}
@@ -515,7 +562,7 @@ const AddDocumentForm: React.FC<Props> = ({
                             />
                           </label>
 
-                          <label className={styles.formLabel} htmlFor="name">
+                          <label className={styles.formLabel}>
                             Дата підпису
                             <Field
                               type="date"
@@ -528,7 +575,7 @@ const AddDocumentForm: React.FC<Props> = ({
                               component="div"
                             />
                           </label>
-                          <label className={styles.formLabel} htmlFor="name">
+                          <label className={styles.formLabel}>
                             Дата відправлення
                             <Field
                               type="date"
