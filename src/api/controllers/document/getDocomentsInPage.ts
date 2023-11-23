@@ -98,6 +98,7 @@ export const getDocomentsInPage = async ({
           documentNumber: 1,
           remark: 1,
           control: 1,
+          importance: 1,
           controlFrequency: 1,
           controlPerson: 1,
           controlExecutor: 1,
@@ -148,6 +149,9 @@ export const getDocomentsInPage = async ({
         _id: document._id.toString(),
         controlPerson: document.controlPerson?.toString(),
         controlExecutor: document.controlExecutor?.toString(),
+        importance: document.importance?.toString(),
+        removalControlType: document.removalControlType?.toString(),
+        controlFrequency: document.controlFrequency?.toString(),
         removalControlSignature: document.removalControlSignature?.toString(),
         folder: document.folder.toString(),
         ...(document.addressee
