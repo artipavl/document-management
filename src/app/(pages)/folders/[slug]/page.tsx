@@ -40,9 +40,9 @@ const Users: FC<PageProps> = async ({ params, searchParams }) => {
     folder: params.slug,
   });
 
-  const folders = await getFolders();
   const users = await getUsers();
   const addressees = await getAddressees();
+  const folders = await getFolders();
   const execution = await getExecution();
   const importance = await getImportance();
   const periodicity = await getPeriodicity();
