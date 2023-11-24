@@ -24,33 +24,23 @@ type PipelineStage =
   | { $project: object }
   | { $match: object };
 
-interface IFolder {
-  _id: string;
-  name: string;
-  href: string;
-}
-
-interface IPeriodicity {
-  _id: string;
-  name: string;
-  href: string;
-}
-
-interface IImportance {
-  _id: string;
-  name: string;
-  href: string;
-}
-
-interface IExecution {
-  _id: string;
-  name: string;
-  href: string;
-}
-
 interface IAddSelect {
   name: string;
 }
+
+interface ISelect {
+  _id: string;
+  name: string;
+  href: string;
+}
+
+type IFolder = ISelect;
+
+type IPeriodicity = ISelect;
+
+type IImportance = ISelect;
+
+type IExecution = ISelect;
 
 interface IAddUnderAddressee {
   name: string;
@@ -136,6 +126,7 @@ interface IAddDocument {
   description?: string;
   addressee?: string;
   addresseeSignature?: string;
+  importance?: string;
   documentDate?: string;
   documentNumber?: string;
   remark: string;
@@ -168,6 +159,7 @@ interface IDocument {
   controlFrequency?: string;
   controlPerson?: string;
   controlExecutor?: string;
+  importance?: string;
   controlDate?: string;
   folder: string;
   folderHref: string;

@@ -17,10 +17,15 @@ import styles from "./addSelectForm.module.scss";
 interface addSelectFormProps {
   selectName: "folder" | "periodicity" | "execution" | "importance";
   title: string;
+  data?: ISelect;
 }
 
-const AddSelectForm: React.FC<addSelectFormProps> = ({ selectName, title }) => {
-  const initialValues = { name: "" };
+const AddSelectForm: React.FC<addSelectFormProps> = ({
+  selectName,
+  title,
+  data,
+}) => {
+  const initialValues = { name: data ? data.name : "" };
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Поле обов'язкове"),
@@ -30,13 +35,15 @@ const AddSelectForm: React.FC<addSelectFormProps> = ({ selectName, title }) => {
     values: IAddSelect,
     { setSubmitting, setStatus, resetForm }: any
   ) => {
-    addSelect({ selectName, name: values.name })
+    addSelect({ selectName, name: values.name, data: data })
       .then((response) => {
-        setStatus({ message: "Папку успішно створено" });
+        setStatus({ message: data ? "Успішно змінено" : "Успішно створено" });
         resetForm();
       })
       .catch((error) => {
-        setStatus({ message: "Помилка створення папки" });
+        setStatus({
+          message: data ? "Змінени не застосовані" : "Помилка створення",
+        });
       })
       .finally(() => {
         setSubmitting(false);

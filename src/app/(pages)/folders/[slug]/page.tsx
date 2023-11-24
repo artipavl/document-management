@@ -1,6 +1,9 @@
 import { getAddressees } from "@/api/controllers/addressee/getAddressees";
 import { getDocomentsInPage } from "@/api/controllers/document/getDocomentsInPage";
+import { getExecution } from "@/api/controllers/execution/getExecution";
 import { getFolders } from "@/api/controllers/folder/getFolders";
+import { getImportance } from "@/api/controllers/importance/getImportance";
+import { getPeriodicity } from "@/api/controllers/periodicity/getPeriodicity";
 import { getUsers } from "@/api/controllers/user/getUsers";
 import AddDocumentForm from "@/components/addDocumentForm/addDocumentForm";
 import DataTable from "@/components/dataTable/dataTable";
@@ -37,9 +40,12 @@ const Users: FC<PageProps> = async ({ params, searchParams }) => {
     folder: params.slug,
   });
 
-  const folders = await getFolders();
   const users = await getUsers();
   const addressees = await getAddressees();
+  const folders = await getFolders();
+  const execution = await getExecution();
+  const importance = await getImportance();
+  const periodicity = await getPeriodicity();
   return (
     <div>
       <FoldersNav folders={folders} current={params.slug} />
@@ -48,6 +54,9 @@ const Users: FC<PageProps> = async ({ params, searchParams }) => {
         folders={folders}
         users={users}
         addressees={addressees}
+        execution={execution}
+        importance={importance}
+        periodicity={periodicity}
       />
       <DataTable
         data={documents}
@@ -85,6 +94,9 @@ const Users: FC<PageProps> = async ({ params, searchParams }) => {
                 users={users}
                 data={documents.find((item) => item._id.toString() === id)}
                 addressees={addressees}
+                execution={execution}
+                importance={importance}
+                periodicity={periodicity}
               />
             </div>
           </Overlay>
