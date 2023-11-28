@@ -1,0 +1,11 @@
+.list {
+  @apply flex flex-col gap-4;
+}
+
+.item {
+  @apply flex flex-col gap-4 p-4 bg-white border border-solid border-coolGray30;
+}
+
+.itemRow {
+  @apply flex justify-center gap-4;
+}
