@@ -1,12 +1,12 @@
-import Title from "@/components/title/title";
+import LoginUserForm from "@/components/loginUserForm/loginUserForm";
 import React, { FC } from "react";
 
 type PageProps = {};
 
 const Page: FC<PageProps> = (props) => {
   return (
-    <div>
-      <Title title="login" />
+    <div className="min-w-[400px]">
+      <LoginUserForm />
     </div>
   );
 };
