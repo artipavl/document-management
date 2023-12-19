@@ -104,6 +104,16 @@ interface IAddUser {
   startWork?: string;
   finishWork?: string;
 }
+interface ILoginUser {
+  email: string;
+  password: string;
+}
+interface IRecoverUser {
+  name: string;
+  email: string;
+}
+
+
 
 interface IUser {
   _id: string;
