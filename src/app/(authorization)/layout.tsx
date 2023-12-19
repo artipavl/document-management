@@ -1,3 +1,7 @@
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <main className="bg-gray-100 w-full p-6">{children}</main>;
+  return (
+    <main className="w-full h-[100vh] p-6 flex justify-center items-center">
+      {children}
+    </main>
+  );
 }
