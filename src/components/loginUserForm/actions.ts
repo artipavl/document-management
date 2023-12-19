@@ -1,0 +1,14 @@
+"use server";
+
+import { addUser } from "@/api/controllers/user/addUser";
+import { updateUserById } from "@/api/controllers/user/updateUserById";
+import { revalidatePath } from "next/cache";
+
+export async function createUser(values: ILoginUser) {
+  try {
+   
+    return revalidatePath("/");
+  } catch (e) {
+    return { message: "Failed to create" };
+  }
+}
