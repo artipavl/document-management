@@ -112,8 +112,9 @@ interface IRecoverUser {
   name: string;
   email: string;
 }
-
-
+interface IUserPayload {
+  _id: string;
+}
 
 interface IUser {
   _id: string;
