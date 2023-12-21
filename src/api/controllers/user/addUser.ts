@@ -1,3 +1,4 @@
+"use server";
 import createRandomPassword from "@/helpers/createRandomPassword";
 import connectDB from "../../connect-db";
 import UserModel from "@/api/models/user";

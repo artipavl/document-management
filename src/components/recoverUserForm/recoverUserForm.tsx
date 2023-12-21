@@ -2,10 +2,10 @@
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
-import { createUser } from "./actions";
 
 import styles from "./recoverUserForm.module.scss";
 import Link from "next/link";
+import { recoverUser } from "@/api/controllers/user/recoverUser";
 
 interface Props {}
 
@@ -26,7 +26,7 @@ const RecoverUserForm: React.FC<Props> = () => {
     values: IRecoverUser,
     { setSubmitting, setStatus, resetForm }: any
   ) => {
-    createUser(values)
+    recoverUser(values)
       .then((response) => {
         setStatus({
           message: "Користувач успішно авотризований",
