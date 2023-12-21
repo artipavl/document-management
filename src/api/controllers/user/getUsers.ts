@@ -1,3 +1,4 @@
+"use server";
 import connectDB from "../../connect-db";
 import UserModel from "../../models/user";
 
