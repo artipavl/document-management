@@ -2,10 +2,10 @@
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
-import { createUser } from "./actions";
 
 import styles from "./loginUserForm.module.scss";
 import Link from "next/link";
+import { loginUser } from "@/api/controllers/user/loginUser";
 
 interface Props {}
 
@@ -26,8 +26,9 @@ const LoginUserForm: React.FC<Props> = () => {
     values: ILoginUser,
     { setSubmitting, setStatus, resetForm }: any
   ) => {
-    createUser(values)
+    loginUser(values)
       .then((response) => {
+        console.log(response);
         setStatus({
           message: "Користувач успішно авотризований",
         });
