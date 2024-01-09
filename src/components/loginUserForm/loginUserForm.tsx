@@ -2,6 +2,7 @@
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
+import Cookies from "js-cookie";
 
 import styles from "./loginUserForm.module.scss";
 import Link from "next/link";
@@ -29,9 +30,15 @@ const LoginUserForm: React.FC<Props> = () => {
     loginUser(values)
       .then((response) => {
         console.log(response);
-        setStatus({
-          message: "Користувач успішно авотризований",
-        });
+        if (response) {
+          Cookies.set("token", response.token);
+          Cookies.set("name", response.name);
+          Cookies.set("_id", response._id);
+          Cookies.set("email", response.email);
+          setStatus({
+            message: "Користувач успішно авотризований",
+          });
+        }
         resetForm();
       })
       .catch((error) => {
