@@ -1,6 +1,5 @@
 "use client";
 import React, { FC, useState } from "react";
-import Cookies from "js-cookie";
 
 import Logo from "../logo/logo";
 import Link from "next/link";
@@ -55,7 +54,6 @@ const Header: FC<HeaderProps> = (props) => {
             <AiOutlineUser className={style.headerIcon} />
           </Link>
         </div>
-        <div>{Cookies.get('email')}</div>
         <nav className={isOpen ? style.headerNavOpen : style.headerNav}>
           <ul
             onClick={(e) => {

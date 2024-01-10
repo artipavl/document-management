@@ -1,6 +1,7 @@
 import Title from '@/components/title/title';
 import React, { FC } from 'react';
 import styles from './page.module.scss';
+import { cookies } from 'next/headers'
 
 type PageProps = {};
 
