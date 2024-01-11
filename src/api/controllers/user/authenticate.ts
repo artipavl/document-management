@@ -44,7 +44,7 @@ export const authenticate = async (token: string) => {
 
     const newToken = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
 
-    await UserModel.findByIdAndUpdate(user._id, { newToken });
+    await UserModel.findByIdAndUpdate(user._id, { token:newToken });
 
     return {
       _id: user._id,
