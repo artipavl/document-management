@@ -13,17 +13,20 @@ import {
   AiOutlineTeam,
   AiOutlineBook,
   AiOutlineContainer,
+  AiOutlineLogout,
 } from "react-icons/ai";
 
 import style from "./header.module.scss";
 
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, redirect } from "next/navigation";
 import MobileHeader from "../mobileHeader/mobileHeader";
+import { logoutUser } from "@/api/controllers/user/logoutUser";
 
 type HeaderProps = {};
 
 const Header: FC<HeaderProps> = (props) => {
   const router = usePathname();
+  const Redirect = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   function openMenu() {
@@ -36,6 +39,9 @@ const Header: FC<HeaderProps> = (props) => {
     if (isOpen) {
       setIsOpen(false);
     }
+  }
+  function redirectMenu() {
+    Redirect.push("/login");
   }
 
   return (
@@ -53,6 +59,19 @@ const Header: FC<HeaderProps> = (props) => {
           <Link href="/home" className={style.headerUser}>
             <AiOutlineUser className={style.headerIcon} />
           </Link>
+          <button
+            className={style.headerNotification}
+            onClick={() => {
+              logoutUser()
+                .then((r) => (r ? redirectMenu() : alert("сталася помилка1")))
+                .catch((r) => {
+                  console.log(r);
+                  alert("сталася помилка2");
+                });
+            }}
+          >
+            <AiOutlineLogout className={style.headerIcon} />
+          </button>
         </div>
         <nav className={isOpen ? style.headerNavOpen : style.headerNav}>
           <ul
