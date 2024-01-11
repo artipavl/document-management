@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import connectDB from "../../connect-db";
 import UserModel from "../../models/user";
 import { authenticate } from "./authenticate";
+import { cookies } from "next/headers";
 
 export const loginUser = async ({ email, password }: ILoginUser) => {
   try {
@@ -35,7 +36,10 @@ export const loginUser = async ({ email, password }: ILoginUser) => {
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
 
     await UserModel.findByIdAndUpdate(user._id, { token });
-
+    cookies().set("token", token);
+    cookies().set("name", user.name);
+    cookies().set("_id", user._id.toString());
+    cookies().set("email", user.email);
     return {
       _id: user._id.toString(),
       name: user.name,

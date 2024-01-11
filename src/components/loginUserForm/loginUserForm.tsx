@@ -2,15 +2,16 @@
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
-import { cookies } from 'next/headers'
 
 import styles from "./loginUserForm.module.scss";
 import Link from "next/link";
 import { loginUser } from "@/api/controllers/user/loginUser";
+import { useRouter } from "next/navigation";
 
 interface Props {}
 
 const LoginUserForm: React.FC<Props> = () => {
+  const router = useRouter();
   const initialValues: ILoginUser = {
     email: "",
     password: "",
@@ -31,14 +32,11 @@ const LoginUserForm: React.FC<Props> = () => {
       .then((response) => {
         console.log(response);
         if (response) {
-          cookies().set("token", response.token);
-          cookies().set("name", response.name);
-          cookies().set("_id", response._id);
-          cookies().set("email", response.email);
           setStatus({
             message: "Користувач успішно авотризований",
           });
         }
+        router.push("/home");
         resetForm();
       })
       .catch((error) => {
