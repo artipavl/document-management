@@ -1,9 +1,10 @@
 "use server";
+import { v4 } from "uuid";
+import bcrypt from "bcryptjs";
+
 import createRandomPassword from "@/helpers/createRandomPassword";
 import connectDB from "../../connect-db";
 import UserModel from "@/api/models/user";
-import { v4 } from "uuid";
-import bcrypt from "bcryptjs";
 
 export const recoverUser = async ({ name, email }: IRecoverUser) => {
   try {
