@@ -6,12 +6,11 @@ import * as Yup from "yup";
 import styles from "./loginUserForm.module.scss";
 import Link from "next/link";
 import { loginUser } from "@/api/controllers/user/loginUser";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 interface Props {}
 
 const LoginUserForm: React.FC<Props> = () => {
-  const router = useRouter();
   const initialValues: ILoginUser = {
     email: "",
     password: "",
@@ -35,8 +34,8 @@ const LoginUserForm: React.FC<Props> = () => {
           setStatus({
             message: "Користувач успішно авотризований",
           });
+          redirect("/");
         }
-        router.push("/home");
         resetForm();
       })
       .catch((error) => {

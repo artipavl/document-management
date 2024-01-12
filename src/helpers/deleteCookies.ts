@@ -1,10 +1,12 @@
+"use server";
 import { cookies } from "next/headers";
 
 function deleteCookies() {
-    cookies().delete("token");
-    cookies().delete("name");
-    cookies().delete("_id");
-    cookies().delete("email");
+  const cookieStore = cookies();
+  cookieStore.delete("token");
+  cookieStore.delete("name");
+  cookieStore.delete("_id");
+  cookieStore.delete("email");
 }
 
-export default deleteCookies
+export default deleteCookies;

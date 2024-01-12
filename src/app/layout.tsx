@@ -1,7 +1,9 @@
+"use client";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 // import Header from "@/components/header/header";
 import "../../tailwind.config";
+
 // import MobileHeader from "@/components/mobileHeader/mobileHeader";
 // import { Metadata } from "next";
 
@@ -20,6 +22,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="en">
       <body

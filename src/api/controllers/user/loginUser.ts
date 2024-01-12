@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 
 import connectDB from "../../connect-db";
 import UserModel from "../../models/user";
-import { authenticate } from "./authenticate";
 import { cookies } from "next/headers";
 
 export const loginUser = async ({ email, password }: ILoginUser) => {
